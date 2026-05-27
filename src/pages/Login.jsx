@@ -1,8 +1,27 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleLogin = () => {
+    if (!email || !password) {
+      alert('Email dan Password wajib diisi')
+      return
+    }
+
+    if (email.endsWith('@sppg.id')) {
+      navigate('/mitra/status-kemitraan')
+    } else if (email.endsWith('@siswa.sch.id')) {
+      navigate('/umum/dashboard')
+    } else if (email.endsWith('@sch.id')) {
+      navigate('/sekolah/input-alergi')
+    } else {
+      navigate('/umum/dashboard')
+    }
+  }
 
   return (
     <div className="flex min-h-screen bg-blue-100 font-sans">
@@ -52,17 +71,27 @@ export default function Login() {
             <label className="block text-gray-700 font-semibold mb-2 flex items-center gap-2">
               <span>✉️</span> Email
             </label>
-            <input type="email" className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" />
+            <input 
+              type="email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" 
+            />
           </div>
           <div className="mb-8">
             <label className="block text-gray-700 font-semibold mb-2 flex items-center gap-2">
               <span>🔒</span> Password
             </label>
-            <input type="password" className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" />
+            <input 
+              type="password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500" 
+            />
           </div>
           
           <button 
-            onClick={() => navigate('/mitra/status-kemitraan')}
+            onClick={handleLogin}
             className="w-full bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition"
           >
             Masuk
@@ -74,5 +103,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  );
+  )
 }
