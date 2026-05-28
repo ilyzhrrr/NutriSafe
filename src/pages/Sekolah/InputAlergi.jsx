@@ -5,7 +5,7 @@ export default function InputAlergi() {
   const [siswaAlergi] = useState([
     { nama: 'Icha Aulia Ambarwati', kelas: '6A', jenis: 'Alergi Kacang' },
     { nama: 'Vina Namira', kelas: '4B', jenis: 'Alergi Kacang' },
-    { nama: 'Westy Adam Rismahadi', kelas: '1B', jenis: 'Alergi Kacang' },
+    { nama: 'Wesly Adam Rismahadi', kelas: '1B', jenis: 'Alergi Kacang' },
     { nama: 'Zahra Illiyin', kelas: '5B', jenis: 'Alergi Kacang' },
   ])
 

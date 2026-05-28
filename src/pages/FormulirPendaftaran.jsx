@@ -16,8 +16,8 @@ export default function FormulirPendaftaran() {
       {/* Tombol Kembali & Judul Utama */}
       <div className="max-w-4xl mx-auto flex items-center mb-8 relative">
         <button 
-          onClick={() => navigate('/')} 
-          className="bg-[#93C5FD] text-[#1E3A8A] w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-bold shadow-sm hover:bg-blue-300 transition"
+          onClick={() => navigate(-1)} 
+          className="bg-[#93C5FD] text-[#1E3A8A] w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-bold shadow-sm hover:bg-blue-300 transition cursor-pointer"
         >
           ‹
         </button>
@@ -103,7 +103,7 @@ export default function FormulirPendaftaran() {
           <div className="pt-6">
             <button 
               type="submit"
-              className="w-full bg-[#2563EB] text-white py-4 rounded-2xl font-black text-lg shadow-lg hover:bg-blue-700 transition"
+              className="w-full bg-[#2563EB] text-white py-4 rounded-2xl font-black text-lg shadow-lg hover:bg-blue-700 transition cursor-pointer"
             >
               Daftar
             </button>
@@ -124,8 +124,8 @@ export default function FormulirPendaftaran() {
               Silahkan tunggu verifikasi selanjutnya melalui e-mail
             </p>
             <button 
-              onClick={() => navigate('/')}
-              className="w-full bg-[#2563EB] text-white py-3 rounded-xl font-black text-sm shadow-md hover:bg-blue-700 transition"
+              onClick={() => navigate(-1)}
+              className="w-full bg-[#2563EB] text-white py-3 rounded-xl font-black text-sm shadow-md hover:bg-blue-700 transition cursor-pointer"
             >
               OK
             </button>

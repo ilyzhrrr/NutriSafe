@@ -24,10 +24,10 @@ export default function HalamanUtama() {
           <button onClick={() => window.scrollTo(0,0)} className="bg-[#93C5FD] px-5 py-2 rounded-full cursor-pointer hover:bg-blue-300 transition text-[#1E3A8A]">
             Beranda
           </button>
-          <button onClick={() => setShowTentang(true)} className="hover:text-blue-600 transition">
+          <button onClick={() => setShowTentang(true)} className="hover:text-blue-600 transition cursor-pointer">
             Tentang MBG
           </button>
-          <button onClick={() => setShowCaraMitra(true)} className="hover:text-blue-600 transition">
+          <button onClick={() => setShowCaraMitra(true)} className="hover:text-blue-600 transition cursor-pointer">
             Cara Menjadi Mitra
           </button>
           <div onClick={() => navigate('/login')} className="cursor-pointer hover:text-blue-600 transition">
@@ -39,15 +39,6 @@ export default function HalamanUtama() {
       {/* --- HERO SECTION --- */}
       <section className="relative w-full max-w-5xl mx-auto mt-2 px-4">
         <img src="/utama.png" alt="Banner" className="w-full h-auto rounded-3xl shadow-md object-cover" />
-        <div className="absolute top-8 right-12">
-          <button 
-            /* DIUBAH: Langsung ke halaman formulir pendaftaran */
-            onClick={() => navigate('/formulir-pendaftaran')}
-            className="bg-[#2563EB] text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg hover:bg-blue-700 transition transform hover:scale-105"
-          >
-            Daftar Menjadi Mitra
-          </button>
-        </div>
       </section>
 
       {/* --- STATISTIK GLOBAL --- */}
@@ -145,7 +136,7 @@ export default function HalamanUtama() {
       {showTentang && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl relative overflow-hidden flex flex-col">
-            <button onClick={() => setShowTentang(false)} className="absolute top-5 right-6 text-2xl font-bold text-gray-400 hover:text-red-500">✕</button>
+            <button onClick={() => setShowTentang(false)} className="absolute top-5 right-6 text-2xl font-bold text-gray-400 hover:text-red-500 cursor-pointer">✕</button>
             <div className="p-10">
               <h2 className="text-2xl font-black text-[#1E3A8A] text-center mb-6">Tentang MBG</h2>
               <div className="text-xs text-gray-700 font-semibold leading-relaxed space-y-4">
@@ -172,7 +163,7 @@ export default function HalamanUtama() {
       {showCaraMitra && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
           <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl relative overflow-hidden flex flex-col">
-            <button onClick={() => setShowCaraMitra(false)} className="absolute top-5 right-6 text-2xl font-bold text-gray-400 hover:text-red-500">✕</button>
+            <button onClick={() => setShowCaraMitra(false)} className="absolute top-5 right-6 text-2xl font-bold text-gray-400 hover:text-red-500 cursor-pointer">✕</button>
             <div className="p-10 flex flex-col items-center">
               <h2 className="text-2xl font-black text-[#1E3A8A] text-center mb-6">Cara Menjadi Mitra</h2>
               <div className="text-[11px] text-gray-700 font-semibold leading-relaxed space-y-4 w-full">
@@ -184,9 +175,8 @@ export default function HalamanUtama() {
                 <p>5. **Penugasan dan Distribusi:** Mitra yang telah aktif akan menerima penugasan distribusi ke sekolah yang ditentukan, serta dapat memantau kegiatan melalui sistem MBG.</p>
               </div>
               <button 
-                /* DIUBAH: Menutup pop-up lalu pindah ke halaman formulir */
                 onClick={() => { setShowCaraMitra(false); navigate('/formulir-pendaftaran'); }}
-                className="mt-8 bg-[#2563EB] text-white px-10 py-3 rounded-xl font-bold text-sm shadow-md hover:bg-blue-700 transition"
+                className="mt-8 bg-[#2563EB] text-white px-10 py-3 rounded-xl font-bold text-sm shadow-md hover:bg-blue-700 transition cursor-pointer"
               >
                 Daftar Menjadi Mitra
               </button>

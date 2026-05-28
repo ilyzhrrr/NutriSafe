@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import SidebarMitra from './SidebarMitra'
 
 export default function StatusKemitraan() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
       <SidebarMitra />
@@ -59,12 +62,15 @@ export default function StatusKemitraan() {
                 </div>
               </div>
             </div>
-            <button className="bg-[#3B82F6] text-white px-5 py-2 rounded-xl font-bold hover:bg-blue-600 shadow-sm transition text-xs">
+            <button className="bg-[#3B82F6] text-white px-5 py-2 rounded-xl font-bold hover:bg-blue-600 shadow-sm transition text-xs cursor-pointer">
               Detail
             </button>
           </div>
           
-          <button className="bg-[#2563EB] text-white px-10 py-3.5 rounded-lg font-bold text-base hover:bg-blue-700 shadow-md transition w-full max-w-xl mb-12">
+          <button 
+            onClick={() => navigate('/formulir-pendaftaran')}
+            className="bg-[#2563EB] text-white px-10 py-3.5 rounded-lg font-bold text-base hover:bg-blue-700 shadow-md transition w-full max-w-xl mb-12 cursor-pointer"
+          >
             Daftar SPPG Baru
           </button>
         </div>

@@ -7,7 +7,7 @@ export default function DataSiswa() {
     { nama: 'Vina Namira', nisn: '002345666', kelas: '4A', jk: 'P' },
     { nama: 'Icha Aulia Ambarwati', nisn: '0023456789', kelas: '6A', jk: 'P' },
     { nama: 'Zahra Illiyin', nisn: '0034567890', kelas: '5B', jk: 'P' },
-    { nama: 'Westy Adam Rismahadi', nisn: '0045678901', kelas: '1B', jk: 'L' },
+    { nama: 'Wesly Adam Rismahadi', nisn: '0045678901', kelas: '1B', jk: 'L' },
     { nama: 'Budi Santoso', nisn: '0056789012', kelas: '1B', jk: 'L' },
   ])
 
