@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import SidebarMitra from './SidebarMitra'
 
 export default function RiwayatLaporan() {
   const [tampilan, setTampilan] = useState('daftar')
-  const navigate = useNavigate()
 
   if (tampilan === 'detail') {
     return (
       <div className="min-h-screen bg-[#E0F2FE] font-sans p-6">
         <div className="max-w-4xl mx-auto">
-          
           <div className="flex items-center gap-3 mb-6">
             <button 
               onClick={() => setTampilan('daftar')} 
@@ -115,61 +113,7 @@ export default function RiwayatLaporan() {
 
   return (
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
-      <aside className="w-1/4 bg-[#3B82F6] text-white p-4 flex flex-col sticky top-0 h-screen overflow-y-auto">
-        <div className="flex items-center gap-2 mb-4">
-          <img src="/logo.png" alt="Logo" className="w-8 h-8" />
-          <span className="text-lg font-bold">NutriSafe MBG</span>
-        </div>
-        
-        <div className="mb-4">
-          <img src="/utama.png" alt="Illustration" className="w-full rounded-xl shadow-md bg-white/20 p-1" />
-        </div>
-
-        <h2 className="text-xl font-bold leading-tight mb-6">
-          Dashboard Mitra <br /> & Pengelola
-        </h2>
-
-        <nav className="flex-1 space-y-4 pr-2">
-          <div>
-            <p className="flex items-center gap-2 font-bold mb-2 text-sm"><span className="text-lg">📋</span> Menu Mitra</p>
-            <div className="space-y-1">
-              <div 
-                onClick={() => navigate('/mitra/status-kemitraan')}
-                className="flex justify-between items-center pl-4 pr-3 py-2 hover:bg-blue-400/30 rounded-lg cursor-pointer text-xs"
-              >
-                <span>Status Kemitraan & Daftar SPPG</span><span className="font-bold">&gt;</span>
-              </div>
-              <div className="flex justify-between items-center pl-3 pr-3 py-2 bg-[#2563EB] rounded-lg border-l-4 border-white cursor-default text-xs font-semibold">
-                <span>Riwayat Laporan</span><span className="font-bold">&gt;</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <p className="flex items-center gap-2 font-bold mb-2 text-sm"><span className="text-lg">🏢</span> Menu Pengelola</p>
-            <div className="space-y-1">
-              <div onClick={() => navigate('/mitra/monitoring-alergi')} className="flex justify-between items-center pl-4 pr-3 py-2 hover:bg-blue-400/30 rounded-lg cursor-pointer text-xs">
-                <span>Monitoring Alergi Siswa</span><span className="font-bold">&gt;</span>
-              </div>
-              <div onClick={() => navigate('/mitra/scan-makanan')} className="flex justify-between items-center pl-4 pr-3 py-2 hover:bg-blue-400/30 rounded-lg cursor-pointer text-xs">
-                <span>Scan & Pelaporan Menu Makanan</span><span className="font-bold">&gt;</span>
-              </div>
-              <div onClick={() => navigate('/mitra/daftar-sekolah')} className="flex justify-between items-center pl-4 pr-3 py-2 hover:bg-blue-400/30 rounded-lg cursor-pointer text-xs">
-                <span>Daftar Sekolah</span><span className="font-bold">&gt;</span>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <div className="pt-4 border-t border-white/20 space-y-2 mt-auto pr-2">
-          <div onClick={() => navigate('/mitra/profile')} className="flex items-center gap-2 cursor-pointer hover:text-blue-200 text-sm">
-            <span className="text-lg">👤</span><span>Akun</span>
-          </div>
-          <div onClick={() => navigate('/mitra/pengaturan')} className="flex items-center gap-2 cursor-pointer hover:text-blue-200 text-sm">
-            <span className="text-lg">⚙️</span><span>Pengaturan</span>
-          </div>
-        </div>
-      </aside>
+      <SidebarMitra />
 
       <main className="w-3/4 p-8">
         <div className="flex justify-between items-start mb-6">

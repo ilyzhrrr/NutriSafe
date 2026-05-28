@@ -17,6 +17,19 @@ import Pengaturan from './pages/mitra/Pengaturan'
 import InputAlergi from './pages/sekolah/InputAlergi'
 import PelaporanSekolah from './pages/sekolah/PelaporanSekolah'
 import MakananAlergi from './pages/sekolah/MakananAlergi'
+import AkunSekolah from './pages/sekolah/AkunSekolah'
+import PengaturanSekolah from './pages/sekolah/PengaturanSekolah'
+import DataAlergi from './pages/sekolah/DataAlergi'
+
+//Siswa
+import PelaporanSiswa from './pages/siswa/PelaporanSiswa'
+import AkunSiswa from './pages/siswa/AkunSiswa'
+import PengaturanSiswa from './pages/siswa/PengaturanSiswa'
+
+//Umum
+import PelaporanUmum from './pages/umum/PelaporanUmum'
+import AkunUmum from './pages/umum/AkunUmum'
+import PengaturanUmum from './pages/umum/PengaturanUmum'
 
 export default function App() {
   return (
@@ -36,6 +49,17 @@ export default function App() {
       <Route path="/sekolah/input-alergi" element={<InputAlergi />} />
       <Route path="/sekolah/pelaporan" element={<PelaporanSekolah />} />
       <Route path="/sekolah/makanan-alergi" element={<MakananAlergi />} />
+      <Route path="/sekolah/akun" element={<AkunSekolah />} />
+      <Route path="/sekolah/pengaturan" element={<PengaturanSekolah />} />
+      <Route path="/sekolah/data-alergi" element={<DataAlergi />} />
+
+      <Route path="/siswa/pelaporan" element={<PelaporanSiswa />} />
+      <Route path="/siswa/akun" element={<AkunSiswa />} />
+      <Route path="/siswa/pengaturan" element={<PengaturanSiswa />} />
+
+      <Route path="/umum/pelaporan" element={<PelaporanUmum />} />
+      <Route path="/umum/akun" element={<AkunUmum />} />
+      <Route path="/umum/pengaturan" element={<PengaturanUmum />} />
     </Routes>
   )
 }

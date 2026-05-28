@@ -1,76 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import SidebarMitra from './SidebarMitra'
 
 export default function MonitoringAlergi() {
-  const navigate = useNavigate()
-
   return (
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
-      
-      {/* SIDEBAR */}
-      <aside className="w-1/4 bg-[#3B82F6] text-white p-4 flex flex-col sticky top-0 h-screen overflow-y-auto">
-        <div className="flex items-center gap-2 mb-4">
-          <img src="/logo.png" alt="Logo" className="w-8 h-8" />
-          <span className="text-lg font-bold">NutriSafe MBG</span>
-        </div>
-        
-        <div className="mb-4">
-          <img src="/utama.png" alt="Illustration" className="w-full rounded-xl shadow-md bg-white/20 p-1" />
-        </div>
+      <SidebarMitra />
 
-        <h2 className="text-xl font-bold leading-tight mb-6">
-          Dashboard Mitra <br /> & Pengelola
-        </h2>
-
-        <nav className="flex-1 space-y-4 pr-2">
-          <div>
-            <p className="flex items-center gap-2 font-bold mb-2 text-sm"><span className="text-lg">📋</span> Menu Mitra</p>
-            <div className="space-y-1">
-              <div onClick={() => navigate('/mitra/status-kemitraan')} className="flex justify-between items-center pl-4 pr-3 py-2 hover:bg-blue-400/30 rounded-lg cursor-pointer text-xs">
-                <span>Status Kemitraan & Daftar SPPG</span><span className="font-bold">&gt;</span>
-              </div>
-              <div onClick={() => navigate('/mitra/riwayat-laporan')} className="flex justify-between items-center pl-4 pr-3 py-2 hover:bg-blue-400/30 rounded-lg cursor-pointer text-xs">
-                <span>Riwayat Laporan</span><span className="font-bold">&gt;</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <p className="flex items-center gap-2 font-bold mb-2 text-sm"><span className="text-lg">🏢</span> Menu Pengelola</p>
-            <div className="space-y-1">
-              <div className="flex justify-between items-center pl-3 pr-3 py-2 bg-[#2563EB] rounded-lg border-l-4 border-white cursor-default text-xs font-semibold">
-                <span>Monitoring Alergi Siswa</span><span className="font-bold">&gt;</span>
-              </div>
-              <div onClick={() => navigate('/mitra/scan-makanan')} className="flex justify-between items-center pl-4 pr-3 py-2 hover:bg-blue-400/30 rounded-lg cursor-pointer text-xs">
-                <span>Scan & Pelaporan Menu Makanan</span><span className="font-bold">&gt;</span>
-              </div>
-              <div onClick={() => navigate('/mitra/daftar-sekolah')} className="flex justify-between items-center pl-4 pr-3 py-2 hover:bg-blue-400/30 rounded-lg cursor-pointer text-xs">
-                <span>Daftar Sekolah</span><span className="font-bold">&gt;</span>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <div className="pt-4 border-t border-white/20 space-y-2 mt-auto pr-2">
-          <div onClick={() => navigate('/mitra/profile')} className="flex items-center gap-2 cursor-pointer hover:text-blue-200 text-sm">
-            <span className="text-lg">👤</span><span>Akun</span>
-          </div>
-          <div onClick={() => navigate('/mitra/pengaturan')} className="flex items-center gap-2 cursor-pointer hover:text-blue-200 text-sm">
-            <span className="text-lg">⚙️</span><span>Pengaturan</span>
-          </div>
-        </div>
-      </aside>
-
-      {/* --- MAIN CONTENT RIGHT --- */}
       <main className="w-3/4 p-8 overflow-y-auto">
-        
-        {/* Header Judul (Teks Diperkecil) */}
         <div className="mb-6">
           <h1 className="text-2xl font-black text-[#1E3A8A]">Dashboard Mitra</h1>
           <h2 className="text-lg font-bold text-[#3B82F6] mt-0.5">Monitoring Alergi siswa</h2>
         </div>
 
-        {/* Kartu Atas (Teks dan Ikon Diperkecil) */}
         <div className="flex gap-6 mb-6 w-full max-w-3xl">
           <div className="flex-1 bg-[#FF8A8A] text-gray-900 p-5 rounded-2xl flex items-center justify-center gap-4 shadow-sm border border-red-300">
             <span className="text-4xl text-[#D83B3B]">📋</span>
@@ -89,10 +30,7 @@ export default function MonitoringAlergi() {
           </div>
         </div>
 
-        {/* Grid Konten Bawah */}
         <div className="flex gap-6 items-stretch w-full">
-          
-          {/* Kolom Kiri: Diagram Lingkaran (Posisi Dinaikkan & Teks Diperkecil) */}
           <div className="w-1/2 bg-white rounded-3xl p-6 shadow-sm flex flex-col">
             <h3 className="text-lg font-black text-gray-800 mb-6">Jenis Alergi Siswa</h3>
             
@@ -122,10 +60,7 @@ export default function MonitoringAlergi() {
             </div>
           </div>
 
-          {/* Kolom Kanan: Diagram Batang & Daftar Sekolah (Teks Diperkecil) */}
           <div className="w-1/2 flex flex-col gap-6">
-            
-            {/* Diagram Batang */}
             <div className="bg-white rounded-3xl p-6 shadow-sm">
               <h3 className="text-lg font-black text-gray-800 mb-6">Jumlah Siswa Alergi</h3>
               
@@ -153,7 +88,6 @@ export default function MonitoringAlergi() {
               </div>
             </div>
 
-            {/* Daftar Sekolah */}
             <div className="bg-white rounded-3xl p-6 shadow-sm flex-1">
               <h3 className="text-base font-black text-gray-800 mb-4">Daftar Sekolah dengan Data Alergi</h3>
               <div className="flex flex-col gap-4">
@@ -167,7 +101,6 @@ export default function MonitoringAlergi() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </main>

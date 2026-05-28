@@ -32,10 +32,27 @@ export default function InputAlergi() {
                 <label className="block font-bold mb-1">Nama Siswa</label>
                 <input type="text" className="w-full p-3 rounded-xl border-none outline-none" />
               </div>
+
+              {/* Dropdown Kelas */}
               <div>
                 <label className="block font-bold mb-1">Kelas</label>
-                <select className="w-full p-3 rounded-xl border-none outline-none"><option>Pilih Kelas</option></select>
+                <select defaultValue="" className="w-full p-3 rounded-xl border-none outline-none text-gray-700 bg-white">
+                  <option value="" disabled>Pilih Kelas</option>
+                  <option value="1A">1A</option>
+                  <option value="1B">1B</option>
+                  <option value="2A">2A</option>
+                  <option value="2B">2B</option>
+                  <option value="3A">3A</option>
+                  <option value="3B">3B</option>
+                  <option value="4A">4A</option>
+                  <option value="4B">4B</option>
+                  <option value="5A">5A</option>
+                  <option value="5B">5B</option>
+                  <option value="6A">6A</option>
+                  <option value="6B">6B</option>
+                </select>
               </div>
+
               <div>
                 <label className="block font-bold mb-1">Jenis Alergi</label>
                 <input type="text" placeholder="Contoh: Alergi Kacang" className="w-full p-3 rounded-xl border-none outline-none" />
@@ -47,7 +64,12 @@ export default function InputAlergi() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block font-bold mb-1">Tingkat Keparahan</label>
-                  <select className="w-full p-3 rounded-xl border-none outline-none"><option>Pilih</option></select>
+                  <select defaultValue="" className="w-full p-3 rounded-xl border-none outline-none text-gray-700 bg-white">
+                    <option value="" disabled>Pilih</option>
+                    <option value="ringan">Ringan</option>
+                    <option value="sedang">Sedang</option>
+                    <option value="berat">Berat</option>
+                  </select>
                 </div>
                 <div>
                   <label className="block font-bold mb-1">Tindakan Yang Diperlukan</label>

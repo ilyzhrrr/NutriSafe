@@ -15,11 +15,11 @@ export default function Login() {
     if (email.endsWith('@sppg.id')) {
       navigate('/mitra/status-kemitraan')
     } else if (email.endsWith('@siswa.sch.id')) {
-      navigate('/umum/dashboard')
+      navigate('/siswa/pelaporan')
     } else if (email.endsWith('@sch.id')) {
       navigate('/sekolah/input-alergi')
     } else {
-      navigate('/umum/dashboard')
+      navigate('/umum/pelaporan') 
     }
   }
 
