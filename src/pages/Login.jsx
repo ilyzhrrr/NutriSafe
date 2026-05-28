@@ -17,7 +17,7 @@ export default function Login() {
     } else if (email.endsWith('@siswa.sch.id')) {
       navigate('/siswa/pelaporan')
     } else if (email.endsWith('@sch.id')) {
-      navigate('/sekolah/input-alergi')
+      navigate('/sekolah/data-siswa')
     } else {
       navigate('/umum/pelaporan') 
     }

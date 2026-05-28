@@ -14,6 +14,7 @@ import Profile from './pages/mitra/Profile'
 import Pengaturan from './pages/mitra/Pengaturan'
 
 //Sekolah
+import DataSiswa from './pages/sekolah/DataSiswa'
 import InputAlergi from './pages/sekolah/InputAlergi'
 import PelaporanSekolah from './pages/sekolah/PelaporanSekolah'
 import MakananAlergi from './pages/sekolah/MakananAlergi'
@@ -46,6 +47,7 @@ export default function App() {
       <Route path="/mitra/profile" element={<Profile />} />
       <Route path="/mitra/pengaturan" element={<Pengaturan />} />
 
+      <Route path="/sekolah/data-siswa" element={<DataSiswa />} />
       <Route path="/sekolah/input-alergi" element={<InputAlergi />} />
       <Route path="/sekolah/pelaporan" element={<PelaporanSekolah />} />
       <Route path="/sekolah/makanan-alergi" element={<MakananAlergi />} />

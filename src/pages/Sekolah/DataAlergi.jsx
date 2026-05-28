@@ -9,7 +9,7 @@ export default function DataAlergi() {
     { nama: 'Icha Aulia Ambarwati', kelas: '6A', alergi: 'Kacang', tingkat: 'Tinggi', tindakan: 'Epinefrin jika terpapar' },
     { nama: 'Vina Namira', kelas: '4B', alergi: 'Susu Sapi', tingkat: 'Sedang', tindakan: 'Ganti menu soya' },
     { nama: 'Westy Adam Rismahadi', kelas: '1B', alergi: 'Seafood', tingkat: 'Tinggi', tindakan: 'Pisahkan alat makan' },
-    { nama: 'Zahra Illiyin', kelas: '5C', alergi: 'Telur', tingkat: 'Rendah', tindakan: 'Hindari menu telur' },
+    { nama: 'Zahra Illiyin', kelas: '5B', alergi: 'Telur', tingkat: 'Rendah', tindakan: 'Hindari menu telur' },
   ]
 
   return (
