@@ -14,23 +14,23 @@ import Profile from './pages/mitra/Profile'
 import Pengaturan from './pages/mitra/Pengaturan'
 
 //Sekolah
-import DataSiswa from './pages/sekolah/DataSiswa'
-import InputAlergi from './pages/sekolah/InputAlergi'
-import PelaporanSekolah from './pages/sekolah/PelaporanSekolah'
-import MakananAlergi from './pages/sekolah/MakananAlergi'
-import AkunSekolah from './pages/sekolah/AkunSekolah'
-import PengaturanSekolah from './pages/sekolah/PengaturanSekolah'
-import DataAlergi from './pages/sekolah/DataAlergi'
+import DataSiswa from './pages/Sekolah/DataSiswa'
+import InputAlergi from './pages/Sekolah/InputAlergi'
+import PelaporanSekolah from './pages/Sekolah/PelaporanSekolah'
+import MakananAlergi from './pages/Sekolah/MakananAlergi'
+import AkunSekolah from './pages/Sekolah/AkunSekolah'
+import PengaturanSekolah from './pages/Sekolah/PengaturanSekolah'
+import DataAlergi from './pages/Sekolah/DataAlergi'
 
 //Siswa
-import PelaporanSiswa from './pages/siswa/PelaporanSiswa'
-import AkunSiswa from './pages/siswa/AkunSiswa'
-import PengaturanSiswa from './pages/siswa/PengaturanSiswa'
+import PelaporanSiswa from './pages/Siswa/PelaporanSiswa'
+import AkunSiswa from './pages/Siswa/AkunSiswa'
+import PengaturanSiswa from './pages/Siswa/PengaturanSiswa'
 
 //Umum
-import PelaporanUmum from './pages/umum/PelaporanUmum'
-import AkunUmum from './pages/umum/AkunUmum'
-import PengaturanUmum from './pages/umum/PengaturanUmum'
+import PelaporanUmum from './pages/Umum/PelaporanUmum'
+import AkunUmum from './pages/Umum/AkunUmum'
+import PengaturanUmum from './pages/Umum/PengaturanUmum'
 
 export default function App() {
   return (
