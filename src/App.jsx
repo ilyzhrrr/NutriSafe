@@ -10,10 +10,12 @@ import RiwayatLaporan from './pages/mitra/RiwayatLaporan'
 import MonitoringAlergi from './pages/mitra/MonitoringAlergi'
 import ScanMakanan from './pages/mitra/ScanMakanan'
 import DaftarSekolah from './pages/mitra/DaftarSekolah'
+import MakananBermasalah from './pages/mitra/MakananBermasalah'
 import Profile from './pages/mitra/Profile'
 import Pengaturan from './pages/mitra/Pengaturan'
 
 //Sekolah
+import PenerimaanMakanan from './pages/Sekolah/PenerimaanMakanan'
 import DataSiswa from './pages/Sekolah/DataSiswa'
 import InputAlergi from './pages/Sekolah/InputAlergi'
 import PelaporanSekolah from './pages/Sekolah/PelaporanSekolah'
@@ -44,9 +46,11 @@ export default function App() {
       <Route path="/mitra/monitoring-alergi" element={<MonitoringAlergi />} />
       <Route path="/mitra/scan-makanan" element={<ScanMakanan />} />
       <Route path="/mitra/daftar-sekolah" element={<DaftarSekolah />} />
+      <Route path="/mitra/makanan-bermasalah" element={<MakananBermasalah />} />
       <Route path="/mitra/profile" element={<Profile />} />
       <Route path="/mitra/pengaturan" element={<Pengaturan />} />
 
+      <Route path="/sekolah/penerimaan-makanan" element={<PenerimaanMakanan />} />
       <Route path="/sekolah/data-siswa" element={<DataSiswa />} />
       <Route path="/sekolah/input-alergi" element={<InputAlergi />} />
       <Route path="/sekolah/pelaporan" element={<PelaporanSekolah />} />
