@@ -80,6 +80,12 @@ export default function SidebarMitra() {
             <div onClick={() => navigate('/mitra/daftar-sekolah')} className={menuClass('/mitra/daftar-sekolah')}>
               <span>Daftar Sekolah</span><span className="font-bold">&gt;</span>
             </div>
+            
+            {/* TAUTAN BARU: Laporan Makanan Bermasalah */}
+            <div onClick={() => navigate('/mitra/makanan-bermasalah')} className={menuClass('/mitra/makanan-bermasalah')}>
+              <span>Laporan Makanan Bermasalah</span><span className="font-bold">&gt;</span>
+            </div>
+
           </div>
         </div>
       </nav>
