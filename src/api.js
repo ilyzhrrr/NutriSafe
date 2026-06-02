@@ -19,15 +19,24 @@ const req = async (method, path, body, isForm) => {
   if (token) headers['Authorization'] = `Bearer ${token}`
   if (!isForm && body) headers['Content-Type'] = 'application/json'
 
-  const res = await fetch(BASE_URL + path, {
-    method,
-    headers,
-    body: body ? (isForm ? body : JSON.stringify(body)) : undefined,
-  })
+  let res
+  try {
+    res = await fetch(BASE_URL + path, {
+      method,
+      headers,
+      body: body ? (isForm ? body : JSON.stringify(body)) : undefined,
+    })
+  } catch {
+    throw new Error('Tidak bisa terhubung ke server. Periksa koneksi internet atau coba lagi nanti.')
+  }
 
-  const data = await res.json().catch(() => ({}))
-  if (!res.ok) throw new Error(data.message || 'Terjadi kesalahan server')
-  return data
+  const data = await res.json().catch(() => null)
+  if (!res.ok) {
+    if (data?.message) throw new Error(data.message)
+    if (res.status === 413) throw new Error('Ukuran file terlalu besar. Pastikan total file upload kurang dari 10 MB.')
+    throw new Error(`Server bermasalah (HTTP ${res.status}). Coba lagi beberapa saat.`)
+  }
+  return data ?? {}
 }
 
 export const api = {

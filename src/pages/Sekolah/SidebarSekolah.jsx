@@ -53,6 +53,14 @@ export default function SidebarSekolah() {
         </div>
 
         <nav className="flex flex-col gap-1">
+          <div onClick={() => navigate('/sekolah/distribusi-makanan')} className={menuClass('/sekolah/distribusi-makanan')}>
+            <span>Penerimaan Makanan</span><span className="font-bold">&gt;</span>
+          </div>
+
+          <div onClick={() => navigate('/sekolah/data-guru')} className={menuClass('/sekolah/data-guru')}>
+            <span>Input Data Guru</span><span className="font-bold">&gt;</span>
+          </div>
+
           <div onClick={() => navigate('/sekolah/data-siswa')} className={menuClass('/sekolah/data-siswa')}>
             <span>Input Data Siswa</span><span className="font-bold">&gt;</span>
           </div>

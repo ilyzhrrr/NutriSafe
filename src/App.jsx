@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
+<<<<<<< HEAD
 import Utama from "./pages/Utama";
 import Login from "./pages/Login";
 import Daftar from "./pages/Daftar";
@@ -23,6 +24,30 @@ import MakananAlergi from "./pages/Sekolah/MakananAlergi";
 import AkunSekolah from "./pages/Sekolah/AkunSekolah";
 import PengaturanSekolah from "./pages/Sekolah/PengaturanSekolah";
 import DataAlergi from "./pages/Sekolah/DataAlergi";
+=======
+import Utama from './pages/Utama'
+import Login from './pages/Login'
+import Daftar from './pages/Daftar'
+import FormulirPendaftaran from './pages/FormulirPendaftaran'
+import StatusKemitraan from './pages/mitra/StatusKemitraan'
+import RiwayatLaporan from './pages/mitra/RiwayatLaporan'
+import MonitoringAlergi from './pages/mitra/MonitoringAlergi'
+import ScanMakanan from './pages/mitra/ScanMakanan'
+import DaftarSekolah from './pages/mitra/DaftarSekolah'
+import MakananBermasalah from './pages/mitra/MakananBermasalah'
+import Profile from './pages/mitra/Profile'
+import Pengaturan from './pages/mitra/Pengaturan'
+
+//Sekolah
+import PenerimaanMakanan from './pages/Sekolah/PenerimaanMakanan'
+import DataSiswa from './pages/Sekolah/DataSiswa'
+import InputAlergi from './pages/Sekolah/InputAlergi'
+import PelaporanSekolah from './pages/Sekolah/PelaporanSekolah'
+import MakananAlergi from './pages/Sekolah/MakananAlergi'
+import AkunSekolah from './pages/Sekolah/AkunSekolah'
+import PengaturanSekolah from './pages/Sekolah/PengaturanSekolah'
+import DataAlergi from './pages/Sekolah/DataAlergi'
+>>>>>>> c122b954c9754db66f811f2eb45621e0cfddbb38
 
 //Siswa
 import PelaporanSiswa from "./pages/Siswa/PelaporanSiswa";
@@ -46,6 +71,7 @@ export default function App() {
       <Route path="/mitra/monitoring-alergi" element={<MonitoringAlergi />} />
       <Route path="/mitra/scan-makanan" element={<ScanMakanan />} />
       <Route path="/mitra/daftar-sekolah" element={<DaftarSekolah />} />
+      <Route path="/mitra/makanan-bermasalah" element={<MakananBermasalah />} />
       <Route path="/mitra/profile" element={<Profile />} />
       <Route path="/mitra/pengaturan" element={<Pengaturan />} />
       <Route
@@ -53,6 +79,7 @@ export default function App() {
         element={<PelaporanMasalahMakanan />}
       />
 
+      <Route path="/sekolah/penerimaan-makanan" element={<PenerimaanMakanan />} />
       <Route path="/sekolah/data-siswa" element={<DataSiswa />} />
       <Route path="/sekolah/input-alergi" element={<InputAlergi />} />
       <Route path="/sekolah/pelaporan" element={<PelaporanSekolah />} />

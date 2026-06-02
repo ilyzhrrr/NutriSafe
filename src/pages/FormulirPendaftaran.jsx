@@ -15,6 +15,18 @@ export default function FormulirPendaftaran() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+
+    const proposalFile = proposalRef.current?.files?.[0]
+    const kitchenFile = kitchenRef.current?.files?.[0]
+    if (proposalFile && proposalFile.size > 5 * 1024 * 1024) {
+      setError('Ukuran file proposal melebihi 5 MB.')
+      return
+    }
+    if (kitchenFile && kitchenFile.size > 5 * 1024 * 1024) {
+      setError('Ukuran foto dapur melebihi 5 MB.')
+      return
+    }
+
     setLoading(true)
     try {
       const fd = new FormData(e.target)

@@ -120,7 +120,15 @@ export default function DataSiswa() {
 
           <div className="flex flex-col gap-8">
             <div className="bg-[#C6F6D5] p-8 rounded-[32px] shadow-sm w-full">
-              <h3 className="text-2xl font-black mb-6">Formulir Data Siswa</h3>
+              
+              {/* Bagian Judul dan Tombol Import Excel */}
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-black text-gray-800">Formulir Data Siswa</h3>
+                <button type="button" className="bg-green-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-green-800 transition cursor-pointer shadow-sm">
+                  Import Data dari Excel
+                </button>
+              </div>
+
               {msg && (
                 <div className={`mb-4 p-3 rounded-lg text-sm font-bold ${msg.startsWith('Gagal') ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
                   {msg}
