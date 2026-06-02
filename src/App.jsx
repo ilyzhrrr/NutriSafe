@@ -1,36 +1,38 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-import Utama from './pages/Utama'
-import Login from './pages/Login'
-import Daftar from './pages/Daftar'
-import FormulirPendaftaran from './pages/FormulirPendaftaran'
-import StatusKemitraan from './pages/mitra/StatusKemitraan'
-import RiwayatLaporan from './pages/mitra/RiwayatLaporan'
-import MonitoringAlergi from './pages/mitra/MonitoringAlergi'
-import ScanMakanan from './pages/mitra/ScanMakanan'
-import DaftarSekolah from './pages/mitra/DaftarSekolah'
-import Profile from './pages/mitra/Profile'
-import Pengaturan from './pages/mitra/Pengaturan'
+import Utama from "./pages/Utama";
+import Login from "./pages/Login";
+import Daftar from "./pages/Daftar";
+import FormulirPendaftaran from "./pages/FormulirPendaftaran";
+import StatusKemitraan from "./pages/mitra/StatusKemitraan";
+import RiwayatLaporan from "./pages/mitra/RiwayatLaporan";
+import MonitoringAlergi from "./pages/mitra/MonitoringAlergi";
+import ScanMakanan from "./pages/mitra/ScanMakanan";
+import DaftarSekolah from "./pages/mitra/DaftarSekolah";
+import Profile from "./pages/mitra/Profile";
+import Pengaturan from "./pages/mitra/Pengaturan";
+
+import PelaporanMasalahMakanan from "./pages/mitra/PelaporanMasalahMakanan";
 
 //Sekolah
-import DataSiswa from './pages/Sekolah/DataSiswa'
-import InputAlergi from './pages/Sekolah/InputAlergi'
-import PelaporanSekolah from './pages/Sekolah/PelaporanSekolah'
-import MakananAlergi from './pages/Sekolah/MakananAlergi'
-import AkunSekolah from './pages/Sekolah/AkunSekolah'
-import PengaturanSekolah from './pages/Sekolah/PengaturanSekolah'
-import DataAlergi from './pages/Sekolah/DataAlergi'
+import DataSiswa from "./pages/Sekolah/DataSiswa";
+import InputAlergi from "./pages/Sekolah/InputAlergi";
+import PelaporanSekolah from "./pages/Sekolah/PelaporanSekolah";
+import MakananAlergi from "./pages/Sekolah/MakananAlergi";
+import AkunSekolah from "./pages/Sekolah/AkunSekolah";
+import PengaturanSekolah from "./pages/Sekolah/PengaturanSekolah";
+import DataAlergi from "./pages/Sekolah/DataAlergi";
 
 //Siswa
-import PelaporanSiswa from './pages/Siswa/PelaporanSiswa'
-import AkunSiswa from './pages/Siswa/AkunSiswa'
-import PengaturanSiswa from './pages/Siswa/PengaturanSiswa'
+import PelaporanSiswa from "./pages/Siswa/PelaporanSiswa";
+import AkunSiswa from "./pages/Siswa/AkunSiswa";
+import PengaturanSiswa from "./pages/Siswa/PengaturanSiswa";
 
 //Umum
-import PelaporanUmum from './pages/Umum/PelaporanUmum'
-import AkunUmum from './pages/Umum/AkunUmum'
-import PengaturanUmum from './pages/Umum/PengaturanUmum'
+import PelaporanUmum from "./pages/Umum/PelaporanUmum";
+import AkunUmum from "./pages/Umum/AkunUmum";
+import PengaturanUmum from "./pages/Umum/PengaturanUmum";
 
 export default function App() {
   return (
@@ -46,6 +48,10 @@ export default function App() {
       <Route path="/mitra/daftar-sekolah" element={<DaftarSekolah />} />
       <Route path="/mitra/profile" element={<Profile />} />
       <Route path="/mitra/pengaturan" element={<Pengaturan />} />
+      <Route
+        path="/mitra/pelaporan-masalah-makanan"
+        element={<PelaporanMasalahMakanan />}
+      />
 
       <Route path="/sekolah/data-siswa" element={<DataSiswa />} />
       <Route path="/sekolah/input-alergi" element={<InputAlergi />} />
@@ -63,5 +69,5 @@ export default function App() {
       <Route path="/umum/akun" element={<AkunUmum />} />
       <Route path="/umum/pengaturan" element={<PengaturanUmum />} />
     </Routes>
-  )
+  );
 }
