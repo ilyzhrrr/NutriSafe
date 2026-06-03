@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SidebarMitra from "./SidebarMitra";
 import { api, clearAuth } from "../../api";
 
-const REPORT_ENDPOINT = "/pelaporan-masalah-makanan";
+const REPORT_ENDPOINT = "/sppg/food-problems";
 
 export default function PelaporanMasalahMakanan() {
   const navigate = useNavigate();

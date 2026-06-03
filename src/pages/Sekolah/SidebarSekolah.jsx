@@ -53,7 +53,7 @@ export default function SidebarSekolah() {
         </div>
 
         <nav className="flex flex-col gap-1">
-          <div onClick={() => navigate('/sekolah/distribusi-makanan')} className={menuClass('/sekolah/distribusi-makanan')}>
+          <div onClick={() => navigate('/sekolah/penerimaan-makanan')} className={menuClass('/sekolah/penerimaan-makanan')}>
             <span>Penerimaan Makanan</span><span className="font-bold">&gt;</span>
           </div>
 
@@ -68,7 +68,11 @@ export default function SidebarSekolah() {
           <div onClick={() => navigate('/sekolah/input-alergi')} className={menuClass('/sekolah/input-alergi')}>
             <span>Input Data Alergi Siswa</span><span className="font-bold">&gt;</span>
           </div>
-          
+
+          <div onClick={() => navigate('/sekolah/data-alergi')} className={menuClass('/sekolah/data-alergi')}>
+            <span>Data Alergi Siswa</span><span className="font-bold">&gt;</span>
+          </div>
+
           <div onClick={() => navigate('/sekolah/pelaporan')} className={menuClass('/sekolah/pelaporan')}>
             <span>Pelaporan Makanan oleh Sekolah</span><span className="font-bold">&gt;</span>
           </div>
