@@ -45,18 +45,18 @@ export default function MakananBermasalah() {
     <div className="flex min-h-screen bg-[#BAE1FF] font-sans">
       <SidebarMitra />
 
-      <main className="flex-1 p-10 overflow-y-auto">
-        <div className="flex justify-between items-start mb-10">
+      <main className="flex-1 p-4 sm:p-6 lg:p-10 pt-16 lg:pt-10 overflow-y-auto min-w-0">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-10">
           <div>
-            <h1 className="text-[32px] font-black text-[#0B1A73] leading-tight mb-2">
+            <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-black text-[#0B1A73] leading-tight mb-2">
               Dashboard Mitra
             </h1>
-            <h2 className="text-xl font-bold text-[#0D3B9E]">
+            <h2 className="text-lg sm:text-xl font-bold text-[#0D3B9E]">
               Laporan Makanan Bermasalah
             </h2>
           </div>
 
-          <div className="relative">
+          <div className="relative self-start sm:self-auto">
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
@@ -81,7 +81,8 @@ export default function MakananBermasalah() {
             <h3 className="text-lg font-black text-gray-900">Laporan Masuk</h3>
           </div>
 
-          <table className="w-full text-left border-collapse">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[640px] text-left border-collapse">
             <thead className="bg-[#E5E5E5] text-gray-800 text-sm border-y border-gray-300">
               <tr>
                 <th className="py-4 px-8 font-black w-1/4">Tanggal</th>
@@ -127,6 +128,7 @@ export default function MakananBermasalah() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </main>
     </div>

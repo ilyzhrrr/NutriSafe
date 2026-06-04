@@ -108,34 +108,34 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen bg-blue-100 font-sans relative">
-      
+    <div className="flex flex-col lg:flex-row min-h-screen bg-blue-100 font-sans relative">
+
       {/* -- POPUP NOTIFIKASI SUKSES (TOAST) -- */}
       {showSuccessToast && (
-        <div className="absolute top-10 left-1/2 md:left-3/4 -translate-x-1/2 bg-[#B5C9D9] text-gray-800 px-10 py-4 rounded-xl shadow-md text-center font-bold text-sm z-50 animate-bounce">
+        <div className="fixed top-6 left-1/2 lg:left-3/4 -translate-x-1/2 bg-[#B5C9D9] text-gray-800 px-6 sm:px-10 py-3 sm:py-4 rounded-xl shadow-md text-center font-bold text-xs sm:text-sm z-50 animate-bounce max-w-[90vw]">
           Kata sandi berhasil Diperbarui!<br/>Silahkan Masuk
         </div>
       )}
 
       {/* --- PANEL KIRI (ILUSTRASI) --- */}
-      <div className="w-2/5 bg-[#3B82F6] text-white p-10 flex flex-col items-center justify-center relative">
-        <div className="absolute top-8 left-8 flex items-center gap-4">
+      <div className="w-full lg:w-2/5 bg-[#3B82F6] text-white p-6 sm:p-10 flex flex-col items-center justify-center relative lg:min-h-screen">
+        <div className="lg:absolute lg:top-8 lg:left-8 flex items-center gap-3 sm:gap-4 self-start mb-6 lg:mb-0">
           <button
             onClick={() => navigate("/")}
-            className="text-3xl font-bold hover:text-blue-200 cursor-pointer"
+            className="text-2xl sm:text-3xl font-bold hover:text-blue-200 cursor-pointer"
           >
             &lt;
           </button>
           <div className="flex items-center gap-2">
             <img src="/logo.png" alt="Logo" className="w-8 h-8" />
-            <span className="text-xl font-bold">NutriSafe MBG</span>
+            <span className="text-lg sm:text-xl font-bold">NutriSafe MBG</span>
           </div>
         </div>
-        <h2 className="text-center text-lg font-semibold mb-8 mt-12 px-4">
+        <h2 className="text-center text-base sm:text-lg font-semibold mb-6 sm:mb-8 lg:mt-12 px-2 sm:px-4">
           Platform Monitoring & Pelaporan Keamanan Makanan Siswa (MBG)
         </h2>
-        <img src="/utama.png" alt="Ilustrasi Utama" className="w-full max-w-sm rounded-xl mb-8 shadow-md bg-white object-cover" />
-        <p className="text-left mb-6 text-[13px] leading-relaxed">
+        <img src="/utama.png" alt="Ilustrasi Utama" className="w-full max-w-xs sm:max-w-sm rounded-xl mb-6 sm:mb-8 shadow-md bg-white object-cover" />
+        <p className="text-left mb-4 sm:mb-6 text-[13px] leading-relaxed">
           Membantu sekolah, mitra, dan masyarakat dalam memantau serta melaporkan keamanan dan kualitas makanan siswa
         </p>
         <div className="w-full flex flex-col gap-3 text-xs font-semibold">
@@ -152,13 +152,13 @@ export default function Login() {
       </div>
 
       {/* --- PANEL KANAN (FORMULIR) --- */}
-      <div className="w-3/5 flex flex-col items-center justify-center relative">
+      <div className="w-full lg:w-3/5 flex flex-col items-center justify-center relative py-10 lg:py-0 px-4">
 
         {/* TAMPILAN 1: MASUK AKUN */}
         {view === 'login' && (
           <>
-            <h1 className="text-4xl font-black text-[#1E3A8A] mb-10">Masuk Akun</h1>
-            <div className="bg-white p-10 rounded-2xl shadow-sm w-3/5 max-w-md">
+            <h1 className="text-3xl sm:text-4xl font-black text-[#1E3A8A] mb-6 sm:mb-10">Masuk Akun</h1>
+            <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-sm w-full max-w-md">
               {error && (
                 <div className="mb-4 bg-red-50 border border-red-200 text-red-700 text-sm font-bold p-3 rounded-lg text-center">
                   {error}
@@ -224,8 +224,8 @@ export default function Login() {
         {/* TAMPILAN 2: LUPA PASSWORD */}
         {view === 'forgot' && (
           <>
-            <h1 className="text-4xl font-black text-[#1E3A8A] mb-10">Lupa Password</h1>
-            <div className="bg-white p-10 rounded-2xl shadow-sm w-3/5 max-w-md">
+            <h1 className="text-3xl sm:text-4xl font-black text-[#1E3A8A] mb-6 sm:mb-10">Lupa Password</h1>
+            <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-sm w-full max-w-md">
               {error && (
                 <div className="mb-4 bg-red-50 border border-red-200 text-red-700 text-sm font-bold p-3 rounded-lg text-center">
                   {error}

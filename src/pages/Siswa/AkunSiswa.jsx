@@ -45,30 +45,30 @@ export default function AkunSiswa() {
   return (
     <div className="flex min-h-screen bg-[#FFEDD5] font-sans">
       <SidebarSiswa />
-      <main className="flex-1 p-8 overflow-y-auto">
-        <div className="max-w-4xl mx-auto mt-6">
-          <h2 className="text-4xl font-black text-[#1E3A8A] mb-8">Informasi Pribadi</h2>
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
+        <div className="max-w-4xl mx-auto mt-4 sm:mt-6">
+          <h2 className="text-2xl sm:text-4xl font-black text-[#1E3A8A] mb-6 sm:mb-8">Informasi Pribadi</h2>
 
           {loading ? (
             <div className="text-center py-20 text-gray-400 font-bold">Memuat data...</div>
           ) : (
-            <div className="bg-white rounded-3xl shadow-sm p-10 flex gap-10">
-              <div className="w-1/3 flex flex-col items-center border-r border-gray-100 pr-10">
-                <div className="w-32 h-32 bg-orange-100 rounded-full flex items-center justify-center text-5xl mb-4 border-4 border-[#F97316]">
+            <div className="bg-white rounded-3xl shadow-sm p-5 sm:p-8 lg:p-10 flex flex-col md:flex-row gap-6 md:gap-10">
+              <div className="w-full md:w-1/3 flex flex-col items-center md:border-r md:border-gray-100 md:pr-10 pb-6 md:pb-0 border-b md:border-b-0 border-gray-100">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 bg-orange-100 rounded-full flex items-center justify-center text-4xl sm:text-5xl mb-4 border-4 border-[#F97316]">
                   👩‍🎓
                 </div>
-                <h3 className="font-bold text-gray-800 text-center text-lg">{profile?.name || '-'}</h3>
+                <h3 className="font-bold text-gray-800 text-center text-base sm:text-lg break-words">{profile?.name || '-'}</h3>
                 <p className="text-sm font-bold text-gray-500 mb-2">Siswa</p>
               </div>
 
-              <div className="w-2/3 space-y-5">
+              <div className="w-full md:w-2/3 space-y-5">
                 {msg && (
                   <div className={`p-3 rounded-lg text-sm font-bold ${msg.startsWith('Gagal') ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
                     {msg}
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-xs font-black text-gray-400 uppercase mb-1">Nama Lengkap</label>
                     {isEditing ? (
@@ -102,7 +102,7 @@ export default function AkunSiswa() {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-gray-100 flex gap-4">
+                <div className="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-3 sm:gap-4">
                   {isEditing ? (
                     <>
                       <button onClick={handleSave} disabled={saving}

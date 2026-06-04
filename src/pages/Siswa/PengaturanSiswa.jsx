@@ -34,12 +34,12 @@ export default function PengaturanSiswa() {
   return (
     <div className="flex min-h-screen bg-[#FFEDD5] font-sans">
       <SidebarSiswa />
-      <main className="flex-1 p-8 overflow-y-auto">
-        <div className="max-w-4xl mx-auto mt-6">
-          <h2 className="text-4xl font-black text-[#1E3A8A] mb-8">Pengaturan</h2>
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
+        <div className="max-w-4xl mx-auto mt-4 sm:mt-6">
+          <h2 className="text-2xl sm:text-4xl font-black text-[#1E3A8A] mb-6 sm:mb-8">Pengaturan</h2>
 
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl shadow-sm p-8">
+            <div className="bg-white rounded-3xl shadow-sm p-5 sm:p-8">
               <h3 className="text-xl font-black text-gray-800 mb-6 flex items-center gap-2">
                 <span>🔒</span> Keamanan Akun
               </h3>
@@ -84,7 +84,7 @@ export default function PengaturanSiswa() {
               </form>
             </div>
 
-            <div className="bg-red-50 rounded-3xl shadow-sm p-8 border border-red-100">
+            <div className="bg-red-50 rounded-3xl shadow-sm p-5 sm:p-8 border border-red-100">
               <h3 className="text-xl font-black text-red-700 mb-2">Zona Bahaya</h3>
               <p className="text-sm text-red-600 font-medium mb-4">Keluar dari akun aplikasi NutriSafe.</p>
               <button onClick={handleLogout}

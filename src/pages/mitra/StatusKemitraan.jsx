@@ -21,16 +21,16 @@ export default function StatusKemitraan() {
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
       <SidebarMitra />
 
-      <main className="w-3/4 flex flex-col">
-        <div className="bg-white p-0 relative overflow-hidden h-56 flex flex-col pt-8 rounded-b-3xl shadow-sm border-b border-blue-50">
+      <main className="flex-1 lg:w-3/4 flex flex-col min-w-0">
+        <div className="bg-white p-0 relative overflow-hidden h-44 sm:h-56 flex flex-col pt-12 sm:pt-8 rounded-b-3xl shadow-sm border-b border-blue-50">
           <img src="/status.png" alt="Status Banner" className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none" />
-          <div className="relative z-10 px-12 ml-6 max-w-lg">
-            <h1 className="text-2xl font-black text-[#1E3A8A] leading-tight">Dashboard Mitra</h1>
-            <p className="text-[#3B82F6] font-bold text-base mt-1">Status Kemitraan & Daftar SPPG</p>
+          <div className="relative z-10 px-4 sm:px-12 sm:ml-6 max-w-lg">
+            <h1 className="text-xl sm:text-2xl font-black text-[#1E3A8A] leading-tight">Dashboard Mitra</h1>
+            <p className="text-[#3B82F6] font-bold text-sm sm:text-base mt-1">Status Kemitraan & Daftar SPPG</p>
           </div>
         </div>
 
-        <div className="px-8 pt-6 pb-8 flex flex-col items-center">
+        <div className="px-4 sm:px-8 pt-6 pb-8 flex flex-col items-center">
           {loading ? (
             <div className="py-20 text-gray-400 font-bold">Memuat data...</div>
           ) : (
@@ -45,7 +45,7 @@ export default function StatusKemitraan() {
                 </p>
               </div>
 
-              <div className="flex gap-4 w-full max-w-3xl mb-10">
+              <div className="flex flex-col sm:flex-row gap-4 w-full max-w-3xl mb-10">
                 <div className="flex-1 bg-[#F97316] text-white p-4 rounded-xl flex items-center gap-4 shadow-sm">
                   <span className="text-3xl">🏢</span>
                   <div>
@@ -68,16 +68,16 @@ export default function StatusKemitraan() {
                 <p className="text-gray-400 font-bold mb-8">Belum ada SPPG terdaftar</p>
               ) : (
                 sppgList.map((sppg) => (
-                  <div key={sppg.id} className="w-full max-w-3xl bg-white rounded-2xl p-5 shadow-sm border border-blue-100 flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-4">
-                      <div className="bg-blue-50 p-3 rounded-xl">
-                        <span className="text-4xl">🏢</span>
+                  <div key={sppg.id} className="w-full max-w-3xl bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-blue-100 flex items-start sm:items-center justify-between mb-4">
+                    <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+                      <div className="bg-blue-50 p-2 sm:p-3 rounded-xl shrink-0">
+                        <span className="text-3xl sm:text-4xl">🏢</span>
                       </div>
-                      <div className="space-y-0.5">
-                        <h4 className="text-lg font-black text-[#1E3A8A]">{sppg.name}</h4>
+                      <div className="space-y-0.5 min-w-0">
+                        <h4 className="text-base sm:text-lg font-black text-[#1E3A8A] break-words">{sppg.name}</h4>
                         <div className="text-gray-600 font-semibold space-y-0.5 text-xs">
                           <p>Status: <span className="text-blue-500">{sppg.status === 'active' ? 'Aktif' : sppg.status}</span></p>
-                          <p>Alamat: {sppg.address || '-'}</p>
+                          <p className="break-words">Alamat: {sppg.address || '-'}</p>
                           <p>Kapasitas: {sppg.capacity} Porsi</p>
                         </div>
                       </div>

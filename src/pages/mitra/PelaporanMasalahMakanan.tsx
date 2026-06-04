@@ -133,11 +133,11 @@ export default function PelaporanMasalahMakanan() {
     <div className="flex min-h-screen bg-slate-50">
       <SidebarMitra />
 
-      <main className="flex-1 p-8">
-        <div className="mb-8">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 min-w-0">
+        <div className="mb-6 sm:mb-8">
           <p className="text-sm font-semibold text-blue-600">Dashboard SPPG</p>
 
-          <h1 className="mt-1 text-3xl font-bold text-slate-900">
+          <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-slate-900">
             Pelaporan Masalah Makanan
           </h1>
 
@@ -147,7 +147,7 @@ export default function PelaporanMasalahMakanan() {
           </p>
         </div>
 
-        <section className="max-w-3xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
           {message && (
             <div
               className={`mb-5 rounded-xl border px-4 py-3 text-sm ${
@@ -279,7 +279,7 @@ export default function PelaporanMasalahMakanan() {
               )}
             </div>
 
-            <div className="flex items-center justify-end gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={resetForm}

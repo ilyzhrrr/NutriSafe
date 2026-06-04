@@ -30,14 +30,14 @@ export default function RiwayatLaporan() {
 
   if (selected && detail) {
     return (
-      <div className="min-h-screen bg-[#E0F2FE] font-sans p-6">
+      <div className="min-h-screen bg-[#E0F2FE] font-sans p-4 sm:p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <button onClick={() => { setSelected(null); setDetail(null) }} className="text-[#1E3A8A] text-2xl font-bold hover:text-blue-600">
+            <button onClick={() => { setSelected(null); setDetail(null) }} className="text-[#1E3A8A] text-2xl font-bold hover:text-blue-600 shrink-0">
               &lt;
             </button>
             <div>
-              <h1 className="text-xl font-black text-[#1E3A8A]">Riwayat Laporan Makanan</h1>
+              <h1 className="text-lg sm:text-xl font-black text-[#1E3A8A]">Riwayat Laporan Makanan</h1>
               <h2 className="text-sm font-bold text-[#3B82F6] mt-0.5">Detail Laporan #{detail.id}</h2>
             </div>
           </div>
@@ -62,8 +62,8 @@ export default function RiwayatLaporan() {
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <div className="w-1/3 flex flex-col gap-4">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="w-full md:w-1/3 flex flex-col gap-4">
                   <div className="bg-white p-4 rounded-2xl shadow-sm text-center border border-blue-50">
                     <h4 className="font-bold text-sm mb-2 text-gray-800">Total Porsi</h4>
                     <p className="text-2xl font-black text-gray-900">{detail.total_portions}</p>
@@ -87,13 +87,13 @@ export default function RiwayatLaporan() {
                   </div>
                 </div>
 
-                <div className="w-2/3 flex flex-col gap-4">
+                <div className="w-full md:w-2/3 flex flex-col gap-4">
                   <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-blue-50">
                     <h3 className="font-bold text-center py-4 text-base text-gray-800">Menu Makanan</h3>
                     {(detail.menu_items || []).length === 0 ? (
                       <p className="text-center py-4 text-gray-400 text-sm">Tidak ada data menu</p>
                     ) : (
-                      <table className="w-full text-xs">
+                      <div className="overflow-x-auto"><table className="w-full text-xs">
                         <thead className="bg-gray-200/50 text-left">
                           <tr>
                             <th className="px-4 py-2 font-bold text-gray-600">Nama Menu</th>
@@ -112,22 +112,22 @@ export default function RiwayatLaporan() {
                             </tr>
                           ))}
                         </tbody>
-                      </table>
+                      </table></div>
                     )}
                   </div>
 
                   <div className="bg-white rounded-2xl shadow-sm p-4 text-center border border-blue-50">
                     <h3 className="font-bold text-base mb-4 text-gray-800">Foto Dokumentasi</h3>
-                    <div className="flex gap-4 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                       {detail.photos?.photo1 ? (
-                        <img src={detail.photos.photo1} alt="Foto 1" className="w-48 h-32 object-cover rounded-xl border border-gray-200" />
+                        <img src={detail.photos.photo1} alt="Foto 1" className="w-full sm:w-48 h-32 object-cover rounded-xl border border-gray-200" />
                       ) : (
-                        <div className="w-48 h-32 border-2 border-gray-200 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 text-xs font-bold">Foto 1</div>
+                        <div className="w-full sm:w-48 h-32 border-2 border-gray-200 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 text-xs font-bold">Foto 1</div>
                       )}
                       {detail.photos?.photo2 ? (
-                        <img src={detail.photos.photo2} alt="Foto 2" className="w-48 h-32 object-cover rounded-xl border border-gray-200" />
+                        <img src={detail.photos.photo2} alt="Foto 2" className="w-full sm:w-48 h-32 object-cover rounded-xl border border-gray-200" />
                       ) : (
-                        <div className="w-48 h-32 border-2 border-gray-200 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 text-xs font-bold">Foto 2</div>
+                        <div className="w-full sm:w-48 h-32 border-2 border-gray-200 rounded-xl bg-gray-50 flex items-center justify-center text-gray-300 text-xs font-bold">Foto 2</div>
                       )}
                     </div>
                   </div>
@@ -144,11 +144,11 @@ export default function RiwayatLaporan() {
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
       <SidebarMitra />
 
-      <main className="w-3/4 p-8">
+      <main className="flex-1 lg:w-3/4 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 min-w-0">
         <div className="flex justify-between items-start mb-6">
           <div>
-            <h1 className="text-2xl font-black text-[#1E3A8A]">Dashboard Mitra</h1>
-            <h2 className="text-lg font-bold text-[#3B82F6] mt-0.5">Riwayat Laporan Makanan</h2>
+            <h1 className="text-xl sm:text-2xl font-black text-[#1E3A8A]">Dashboard Mitra</h1>
+            <h2 className="text-base sm:text-lg font-bold text-[#3B82F6] mt-0.5">Riwayat Laporan Makanan</h2>
           </div>
         </div>
 
@@ -160,21 +160,21 @@ export default function RiwayatLaporan() {
           </div>
         ) : (
           groups.map((group) => (
-            <div key={group.date} className="bg-white rounded-2xl shadow-sm p-6 mb-6 border border-blue-50">
+            <div key={group.date} className="bg-white rounded-2xl shadow-sm p-4 sm:p-6 mb-6 border border-blue-50">
               <h3 className="text-gray-500 font-bold mb-4 text-xs">
                 {new Date(group.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
               </h3>
               {(group.schools || []).map((s) => (
-                <div key={s.report_id} className="bg-[#CFFAFE] rounded-xl p-4 mb-3 flex justify-between items-center border border-cyan-100">
-                  <div className="flex gap-4 items-center">
-                    <div className="bg-white p-2 rounded-xl shadow-sm text-2xl">🏫</div>
-                    <div>
-                      <h4 className="font-bold text-base text-gray-800 mb-0.5">{s.school_name}</h4>
-                      <p className="text-xs font-semibold text-gray-600 mb-1">{s.address || '-'}</p>
+                <div key={s.report_id} className="bg-[#CFFAFE] rounded-xl p-4 mb-3 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 border border-cyan-100">
+                  <div className="flex gap-3 sm:gap-4 items-start sm:items-center min-w-0">
+                    <div className="bg-white p-2 rounded-xl shadow-sm text-2xl shrink-0">🏫</div>
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-base text-gray-800 mb-0.5 break-words">{s.school_name}</h4>
+                      <p className="text-xs font-semibold text-gray-600 mb-1 break-words">{s.address || '-'}</p>
                       <p className="text-xs font-bold text-gray-800">{s.total_portions} Porsi</p>
                     </div>
                   </div>
-                  <button onClick={() => openDetail(s.report_id)} className="bg-[#2563EB] text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-blue-700 transition text-xs">
+                  <button onClick={() => openDetail(s.report_id)} className="bg-[#2563EB] text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-blue-700 transition text-xs self-start sm:self-auto shrink-0">
                     Detail
                   </button>
                 </div>

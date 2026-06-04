@@ -34,12 +34,12 @@ export default function PengaturanUmum() {
   return (
     <div className="flex min-h-screen bg-[#FFEDD5] font-sans">
       <SidebarUmum />
-      <main className="flex-1 p-8 overflow-y-auto">
-        <div className="max-w-4xl mx-auto mt-6">
-          <h2 className="text-4xl font-black text-[#1E3A8A] mb-8">Pengaturan</h2>
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
+        <div className="max-w-4xl mx-auto mt-4 sm:mt-6">
+          <h2 className="text-2xl sm:text-4xl font-black text-[#1E3A8A] mb-6 sm:mb-8">Pengaturan</h2>
 
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl shadow-sm p-8">
+            <div className="bg-white rounded-3xl shadow-sm p-5 sm:p-8">
               <h3 className="text-xl font-black text-gray-800 mb-6 flex items-center gap-2">
                 <span>🔒</span> Keamanan Akun
               </h3>

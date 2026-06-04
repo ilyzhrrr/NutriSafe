@@ -106,25 +106,25 @@ export default function DataSiswa() {
   return (
     <div className="flex min-h-screen bg-[#F0FFF4] font-sans">
       <SidebarSekolah />
-      <main className="flex-1 p-8 overflow-y-auto">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
         <div className="max-w-5xl mx-auto">
-          <header className="flex justify-between items-start mb-8">
+          <header className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-6 sm:mb-8">
             <div>
-              <h2 className="text-3xl font-black text-[#166534]">Dashboard Sekolah</h2>
-              <p className="text-lg font-bold text-[#166534] mt-1">Input Data Siswa</p>
+              <h2 className="text-2xl sm:text-3xl font-black text-[#166534]">Dashboard Sekolah</h2>
+              <p className="text-base sm:text-lg font-bold text-[#166534] mt-1">Input Data Siswa</p>
             </div>
-            <div className="text-right pt-2">
-              <p className="text-lg font-bold text-gray-800">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
+            <div className="sm:text-right pt-2">
+              <p className="text-sm sm:text-lg font-bold text-gray-800">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
             </div>
           </header>
 
-          <div className="flex flex-col gap-8">
-            <div className="bg-[#C6F6D5] p-8 rounded-[32px] shadow-sm w-full">
-              
+          <div className="flex flex-col gap-6 sm:gap-8">
+            <div className="bg-[#C6F6D5] p-5 sm:p-8 rounded-3xl sm:rounded-[32px] shadow-sm w-full">
+
               {/* Bagian Judul dan Tombol Import Excel */}
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-black text-gray-800">Formulir Data Siswa</h3>
-                <button type="button" className="bg-green-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-green-800 transition cursor-pointer shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+                <h3 className="text-xl sm:text-2xl font-black text-gray-800">Formulir Data Siswa</h3>
+                <button type="button" className="bg-green-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-green-800 transition cursor-pointer shadow-sm self-start">
                   Import Data dari Excel
                 </button>
               </div>
@@ -140,7 +140,7 @@ export default function DataSiswa() {
                   <input type="text" placeholder="Masukkan nama lengkap" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required
                     className="w-full p-3 rounded-xl border-none outline-none text-sm font-semibold" />
                 </div>
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   <div>
                     <label className="block text-sm font-bold mb-1.5">NISN</label>
                     <input type="text" placeholder="10 digit angka" maxLength={10} minLength={10} value={form.nisn}
@@ -181,21 +181,21 @@ export default function DataSiswa() {
                   <textarea placeholder="Masukkan alamat lengkap siswa" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })}
                     className="w-full p-3 rounded-xl border-none outline-none h-24 text-sm font-semibold resize-none"></textarea>
                 </div>
-                <div className="flex justify-end gap-3 pt-3">
+                <div className="flex flex-col sm:flex-row sm:justify-end gap-3 pt-3">
                   <button type="button" onClick={() => setForm({ name: '', nisn: '', class: '', gender: '', address: '' })}
-                    className="bg-white text-gray-500 px-8 py-2.5 rounded-xl text-sm font-bold hover:bg-gray-100 transition cursor-pointer">Batal</button>
+                    className="bg-white text-gray-500 px-6 sm:px-8 py-2.5 rounded-xl text-sm font-bold hover:bg-gray-100 transition cursor-pointer order-2 sm:order-1">Batal</button>
                   <button type="submit" disabled={saving}
-                    className="bg-[#22C55E] text-white px-10 py-2.5 rounded-xl text-sm font-bold hover:bg-green-600 transition shadow-md cursor-pointer disabled:opacity-60">
+                    className="bg-[#22C55E] text-white px-6 sm:px-10 py-2.5 rounded-xl text-sm font-bold hover:bg-green-600 transition shadow-md cursor-pointer disabled:opacity-60 order-1 sm:order-2">
                     {saving ? 'Menyimpan...' : 'Simpan Data'}
                   </button>
                 </div>
               </form>
             </div>
 
-            <div className="bg-white p-8 rounded-[32px] border-2 border-[#22C55E] shadow-sm w-full mb-10">
-              <div className="flex justify-between items-end mb-6 border-b-2 border-gray-100 pb-4">
-                <h3 className="text-2xl font-black text-gray-800">Daftar Siswa Terdaftar</h3>
-                <div className="flex items-center gap-3">
+            <div className="bg-white p-5 sm:p-8 rounded-3xl sm:rounded-[32px] border-2 border-[#22C55E] shadow-sm w-full mb-10">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6 border-b-2 border-gray-100 pb-4">
+                <h3 className="text-xl sm:text-2xl font-black text-gray-800">Daftar Siswa Terdaftar</h3>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                   <select value={filterKelas} onChange={(e) => setFilterKelas(e.target.value)}
                     className="bg-white border-2 border-green-200 text-green-800 text-sm font-bold px-3 py-1.5 rounded-lg outline-none cursor-pointer">
                     <option value="Semua">Semua Kelas</option>
@@ -219,7 +219,7 @@ export default function DataSiswa() {
                         <h4 className="text-lg font-black text-[#166534] bg-green-100 px-3 py-1 rounded-md">Kelas {kelas}</h4>
                         <div className="h-[2px] flex-1 bg-green-100"></div>
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         {byClass[kelas].map((s) => (
                           <div key={s.id} className="bg-green-50 border border-green-200 p-3 rounded-xl flex items-center gap-3 hover:shadow-sm transition group">
                             <div className="bg-white w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-sm border border-green-100 shrink-0">
@@ -245,14 +245,14 @@ export default function DataSiswa() {
       </main>
 
       {showTambahKelas && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50" onClick={() => { setShowTambahKelas(false); setKelasMsg('') }}>
-          <div className="bg-white rounded-2xl p-8 w-full max-w-lg shadow-xl" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={() => { setShowTambahKelas(false); setKelasMsg('') }}>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 w-full max-w-lg shadow-xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <h4 className="text-xl font-black text-[#166534] mb-1">Tambah Kelas</h4>
             <p className="text-xs text-gray-400 font-bold mb-6">
               Tingkat sekolah: <span className="text-green-700">{schoolGrade || '—'}</span>
             </p>
             <form onSubmit={handleTambahKelas}>
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                 <div className="bg-green-50 rounded-xl p-4">
                   <p className="text-xs font-black text-[#166534] mb-2 uppercase tracking-wide">Tingkat</p>
                   {levelOptions.length > 0 ? (

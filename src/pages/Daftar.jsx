@@ -67,17 +67,17 @@ export default function Daftar() {
   }
 
   return (
-    <div className="flex min-h-screen font-sans">
-      <div className="w-5/12 bg-[#3B82F6] text-white flex flex-col items-center justify-center p-10 relative">
-        <div onClick={() => navigate('/')} className="absolute top-8 left-8 flex items-center gap-2 cursor-pointer hover:text-blue-200 transition">
+    <div className="flex flex-col lg:flex-row min-h-screen font-sans">
+      <div className="w-full lg:w-5/12 bg-[#3B82F6] text-white flex flex-col items-center justify-center p-6 sm:p-10 relative">
+        <div onClick={() => navigate('/')} className="lg:absolute lg:top-8 lg:left-8 flex items-center gap-2 cursor-pointer hover:text-blue-200 transition self-start mb-6 lg:mb-0">
           <span className="text-2xl font-bold">‹</span>
-          <span className="text-xl font-black">NutriSafe MBG</span>
+          <span className="text-lg sm:text-xl font-black">NutriSafe MBG</span>
         </div>
-        <div className="max-w-sm mt-10">
-          <h2 className="text-xl font-bold text-center leading-snug mb-6">
+        <div className="max-w-sm lg:mt-10 w-full">
+          <h2 className="text-lg sm:text-xl font-bold text-center leading-snug mb-4 sm:mb-6">
             Platform Monitoring & Pelaporan Keamanan Makanan Siswa (MBG)
           </h2>
-          <img src="/utama.png" alt="Ilustrasi" className="w-full rounded-2xl mb-6 shadow-md object-cover" />
+          <img src="/utama.png" alt="Ilustrasi" className="w-full rounded-2xl mb-4 sm:mb-6 shadow-md object-cover" />
           <div className="space-y-3">
             <div className="bg-white/20 py-3 px-5 rounded-xl flex items-center gap-3 text-sm font-bold">
               <span>🟣</span> Monitoring Alergi Siswa
@@ -92,16 +92,16 @@ export default function Daftar() {
         </div>
       </div>
 
-      <div className="w-7/12 bg-[#E0F2FE] flex flex-col items-center justify-center p-10">
-        <h1 className="text-4xl font-black text-[#1E3A8A] mb-10">Daftar Akun</h1>
-        <div className="bg-white w-full max-w-2xl rounded-3xl shadow-xl p-10 border border-blue-50">
+      <div className="w-full lg:w-7/12 bg-[#E0F2FE] flex flex-col items-center justify-center p-6 sm:p-10">
+        <h1 className="text-3xl sm:text-4xl font-black text-[#1E3A8A] mb-6 sm:mb-10">Daftar Akun</h1>
+        <div className="bg-white w-full max-w-2xl rounded-3xl shadow-xl p-6 sm:p-10 border border-blue-50">
           {error && (
             <div className="mb-4 bg-red-50 border border-red-200 text-red-700 text-sm font-bold p-3 rounded-lg">
               {error}
             </div>
           )}
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div>
                 <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
                   <span>👤</span> Nama Lengkap
@@ -171,7 +171,7 @@ export default function Daftar() {
                     placeholder="Contoh: 20202020"
                     className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm outline-none focus:border-blue-500 transition" required />
                 </div>
-                <div className="col-span-2">
+                <div className="sm:col-span-2">
                   <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
                     <span>🎓</span> Tingkat
                   </label>
@@ -183,7 +183,7 @@ export default function Daftar() {
                     <option value="SMA/SMK/MA/MAN">SMA/SMK/MA/MAN</option>
                   </select>
                 </div>
-                <div className="col-span-2">
+                <div className="sm:col-span-2">
                   <label className="flex items-center gap-2 text-sm font-bold text-gray-700 mb-2">
                     <span>📍</span> Alamat Lengkap
                   </label>

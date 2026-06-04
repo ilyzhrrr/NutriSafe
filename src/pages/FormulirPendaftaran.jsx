@@ -40,20 +40,20 @@ export default function FormulirPendaftaran() {
   }
 
   return (
-    <div className="min-h-screen bg-[#E0F2FE] font-sans py-10 px-4 relative">
-      <div className="max-w-4xl mx-auto flex items-center mb-8 relative">
+    <div className="min-h-screen bg-[#E0F2FE] font-sans py-6 sm:py-10 px-4 relative">
+      <div className="max-w-4xl mx-auto flex items-center gap-4 mb-6 sm:mb-8 sm:relative">
         <button
           onClick={() => navigate(-1)}
-          className="bg-[#93C5FD] text-[#1E3A8A] w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-bold shadow-sm hover:bg-blue-300 transition cursor-pointer"
+          className="bg-[#93C5FD] text-[#1E3A8A] w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-2xl font-bold shadow-sm hover:bg-blue-300 transition cursor-pointer shrink-0"
         >
           ‹
         </button>
-        <h1 className="absolute left-1/2 -translate-x-1/2 text-2xl font-black text-[#1E3A8A] text-center w-full pointer-events-none">
+        <h1 className="sm:absolute sm:left-1/2 sm:-translate-x-1/2 text-lg sm:text-2xl font-black text-[#1E3A8A] sm:text-center w-full sm:pointer-events-none">
           Formulir Pendaftaran Mitra SPPG Baru
         </h1>
       </div>
 
-      <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-10 border border-blue-50">
+      <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-6 sm:p-10 border border-blue-50">
         {error && (
           <div className="mb-6 bg-red-50 border border-red-200 text-red-700 text-sm font-bold p-3 rounded-lg">
             {error}
@@ -73,7 +73,7 @@ export default function FormulirPendaftaran() {
                 <input name="institution_name" type="text"
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:border-blue-500 outline-none transition" />
               </div>
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
                   <label className="block text-xs font-bold text-gray-700 mb-2">NIK / NPWP (16 digit)</label>
                   <input name="nik_npwp" type="text" maxLength={16} minLength={16}

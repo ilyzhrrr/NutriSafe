@@ -132,10 +132,10 @@ export default function ScanMakanan() {
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
       <SidebarMitra />
 
-      <main className="flex-1 p-8 flex flex-col gap-5 overflow-y-auto">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 flex flex-col gap-5 overflow-y-auto min-w-0">
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-black text-[#1E3A8A]">Dashboard Mitra</h1>
+          <h1 className="text-xl sm:text-2xl font-black text-[#1E3A8A]">Dashboard Mitra</h1>
           <h2 className="text-sm font-bold text-[#3B82F6] mt-0.5">Scan & Pelaporan Menu Makanan Oleh SPPG</h2>
           <p className="text-xs text-gray-500 italic">Scan untuk mendeteksi makanan mengandung alergi</p>
         </div>
@@ -151,7 +151,7 @@ export default function ScanMakanan() {
         )}
 
         {/* Detail Menu Card */}
-        <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+        <div className="bg-white rounded-2xl shadow-sm p-5 sm:p-6 border border-gray-100">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-black text-base text-gray-900">Detail Menu</h3>
             {result && (
@@ -167,7 +167,7 @@ export default function ScanMakanan() {
               </button>
             )}
           </div>
-          <div className="grid grid-cols-2 gap-x-10 gap-y-3 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 lg:gap-x-10 gap-y-3 text-sm">
             <div className="flex items-center gap-2">
               <span className="font-bold text-gray-600 w-28 shrink-0">Nama Menu</span>
               <span className="text-gray-400 mr-1">:</span>
@@ -265,7 +265,7 @@ export default function ScanMakanan() {
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="bg-[#14A8E5] text-black rounded-xl p-4 flex flex-col items-center justify-center shadow-sm min-h-[90px]">
             <p className="font-bold text-sm mb-1">Kalori / Porsi</p>
             {loading ? (
@@ -295,7 +295,7 @@ export default function ScanMakanan() {
         </div>
 
         {/* Scan + Bahan Terdeteksi */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Scan Card */}
           <div className="bg-white rounded-2xl shadow-sm p-6 flex flex-col border border-gray-100">
             <h4 className="font-bold text-sm mb-3 text-center">Scan Makanan disini</h4>
@@ -394,7 +394,7 @@ export default function ScanMakanan() {
         </div>
 
         {/* Rekomendasi + Peringatan Alergi */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Rekomendasi Menu Siswa Alergi */}
           <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
             <h4 className="font-bold text-sm mb-4">Rekomendasi Menu Siswa Alergi</h4>

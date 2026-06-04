@@ -49,15 +49,15 @@ export default function PelaporanSekolah() {
   return (
     <div className="flex min-h-screen bg-[#F0FFF4] font-sans">
       <SidebarSekolah />
-      <main className="flex-1 p-8 overflow-y-auto">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
         <div className="max-w-5xl">
-          <header className="flex justify-between items-start mb-6">
-            <div className="pt-4">
-              <h2 className="text-3xl font-black text-[#166534]">Dashboard Sekolah</h2>
-              <p className="text-lg font-bold text-[#166534] mt-1">Pelaporan Makanan</p>
+          <header className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-6">
+            <div className="pt-2 sm:pt-4">
+              <h2 className="text-2xl sm:text-3xl font-black text-[#166534]">Dashboard Sekolah</h2>
+              <p className="text-base sm:text-lg font-bold text-[#166534] mt-1">Pelaporan Makanan</p>
             </div>
-            <div className="pt-4 text-right">
-              <p className="text-lg font-bold text-gray-800">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
+            <div className="sm:pt-4 sm:text-right">
+              <p className="text-sm sm:text-lg font-bold text-gray-800">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
             </div>
           </header>
 
@@ -74,10 +74,10 @@ export default function PelaporanSekolah() {
             )}
 
             <form onSubmit={handleSubmit}>
-              <div className="bg-[#C6F6D5] p-8 rounded-[32px]">
-                <h3 className="text-2xl font-black mb-6">Formulir Pelaporan Masalah</h3>
+              <div className="bg-[#C6F6D5] p-5 sm:p-8 rounded-3xl sm:rounded-[32px]">
+                <h3 className="text-xl sm:text-2xl font-black mb-6">Formulir Pelaporan Masalah</h3>
                 <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-5 w-3/4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:w-3/4">
                     <select value={form.issue_type} onChange={(e) => setForm({ ...form, issue_type: e.target.value })} required
                       className="p-3 rounded-xl border-2 border-blue-200 outline-none text-sm font-bold text-gray-600 bg-white cursor-pointer">
                       <option value="" disabled>Jenis Masalah</option>
@@ -87,11 +87,11 @@ export default function PelaporanSekolah() {
                       className="p-3 rounded-xl border-2 border-blue-200 outline-none text-sm font-bold text-gray-600 bg-white" />
                   </div>
                   <textarea placeholder="Deskripsi masalah ......" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} required
-                    className="w-3/4 p-4 rounded-xl border-2 border-blue-200 h-28 outline-none text-sm font-semibold resize-none"></textarea>
-                  <div className="flex gap-4 items-center w-3/4 justify-end pt-2">
-                    <p className="font-bold text-sm text-gray-600">{photoFile ? photoFile.name : 'Upload Bukti (opsional)'}</p>
+                    className="w-full lg:w-3/4 p-4 rounded-xl border-2 border-blue-200 h-28 outline-none text-sm font-semibold resize-none"></textarea>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center w-full lg:w-3/4 sm:justify-end pt-2">
+                    <p className="font-bold text-sm text-gray-600 break-words">{photoFile ? photoFile.name : 'Upload Bukti (opsional)'}</p>
                     <button type="button" onClick={() => photoRef.current.click()}
-                      className="bg-[#3B82F6] text-white px-8 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition cursor-pointer shadow-sm">
+                      className="bg-[#3B82F6] text-white px-6 sm:px-8 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition cursor-pointer shadow-sm self-start sm:self-auto">
                       Upload Foto
                     </button>
                     <input ref={photoRef} type="file" accept="image/*" onChange={(e) => setPhotoFile(e.target.files[0])} className="hidden" />
@@ -100,7 +100,7 @@ export default function PelaporanSekolah() {
               </div>
               <div className="flex justify-center mt-6">
                 <button type="submit" disabled={sending}
-                  className="bg-[#22C55E] text-white px-24 py-3 rounded-xl font-black text-base hover:bg-green-600 transition shadow-md cursor-pointer disabled:opacity-60">
+                  className="bg-[#22C55E] text-white px-16 sm:px-24 py-3 rounded-xl font-black text-base hover:bg-green-600 transition shadow-md cursor-pointer disabled:opacity-60 w-full sm:w-auto">
                   {sending ? 'Mengirim...' : 'Kirim'}
                 </button>
               </div>

@@ -32,17 +32,17 @@ export default function MonitoringAlergi() {
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
       <SidebarMitra />
 
-      <main className="w-3/4 p-8 overflow-y-auto">
+      <main className="flex-1 lg:w-3/4 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
         <div className="mb-6">
-          <h1 className="text-2xl font-black text-[#1E3A8A]">Dashboard Mitra</h1>
-          <h2 className="text-lg font-bold text-[#3B82F6] mt-0.5">Monitoring Alergi Siswa</h2>
+          <h1 className="text-xl sm:text-2xl font-black text-[#1E3A8A]">Dashboard Mitra</h1>
+          <h2 className="text-base sm:text-lg font-bold text-[#3B82F6] mt-0.5">Monitoring Alergi Siswa</h2>
         </div>
 
         {loading ? (
           <div className="text-center py-20 text-gray-400 font-bold">Memuat data...</div>
         ) : (
           <>
-            <div className="flex gap-6 mb-6 w-full max-w-3xl">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6 w-full max-w-3xl">
               <div className="flex-1 bg-[#FF8A8A] text-gray-900 p-5 rounded-2xl flex items-center justify-center gap-4 shadow-sm border border-red-300">
                 <span className="text-4xl text-[#D83B3B]">📋</span>
                 <div className="flex flex-col items-center">
@@ -59,8 +59,8 @@ export default function MonitoringAlergi() {
               </div>
             </div>
 
-            <div className="flex gap-6 items-stretch w-full">
-              <div className="w-1/2 bg-white rounded-3xl p-6 shadow-sm flex flex-col">
+            <div className="flex flex-col lg:flex-row gap-6 items-stretch w-full">
+              <div className="w-full lg:w-1/2 bg-white rounded-3xl p-5 sm:p-6 shadow-sm flex flex-col">
                 <h3 className="text-lg font-black text-gray-800 mb-6">Jenis Alergi Siswa</h3>
                 {breakdown.length === 0 ? (
                   <p className="text-center text-gray-400 font-bold py-6">Tidak ada data alergi</p>
@@ -68,7 +68,7 @@ export default function MonitoringAlergi() {
                   <>
                     <div className="flex justify-center mb-6">
                       <div
-                        className="w-56 h-56 rounded-full"
+                        className="w-40 h-40 sm:w-56 sm:h-56 rounded-full"
                         style={{ background: `conic-gradient(${gradient || '#e5e7eb 0% 100%'})` }}
                       ></div>
                     </div>
@@ -84,8 +84,8 @@ export default function MonitoringAlergi() {
                 )}
               </div>
 
-              <div className="w-1/2 flex flex-col gap-6">
-                <div className="bg-white rounded-3xl p-6 shadow-sm flex-1">
+              <div className="w-full lg:w-1/2 flex flex-col gap-6">
+                <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-sm flex-1">
                   <h3 className="text-base font-black text-gray-800 mb-4">Daftar Sekolah dengan Data Alergi</h3>
                   {schools.length === 0 ? (
                     <p className="text-center text-gray-400 font-bold py-4">Belum ada data</p>

@@ -70,10 +70,10 @@ export default function DaftarSekolah() {
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
       <SidebarMitra />
 
-      <main className="w-3/4 p-8">
-        <div className="mb-8">
-          <h1 className="text-2xl font-black text-[#1E3A8A]">Dashboard Pengelola</h1>
-          <h2 className="text-lg font-bold text-[#3B82F6] mt-0.5">Daftar Sekolah Mitra</h2>
+      <main className="flex-1 lg:w-3/4 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 min-w-0">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-xl sm:text-2xl font-black text-[#1E3A8A]">Dashboard Pengelola</h1>
+          <h2 className="text-base sm:text-lg font-bold text-[#3B82F6] mt-0.5">Daftar Sekolah Mitra</h2>
         </div>
 
         {assignMsg && (
@@ -86,7 +86,7 @@ export default function DaftarSekolah() {
           <div className="text-center py-20 text-gray-400 font-bold">Memuat data...</div>
         ) : (
           <>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               <div className="bg-white p-5 rounded-2xl shadow-sm border border-blue-50 flex items-center gap-4">
                 <div className="bg-blue-100 p-3 rounded-xl text-2xl">🏫</div>
                 <div>
@@ -109,8 +109,8 @@ export default function DaftarSekolah() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-6 mt-3 mb-8">
-              <div className="col-start-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-3 mb-6 sm:mb-8">
+              <div className="sm:col-start-3">
                 <button
                   onClick={openModal}
                   className="w-full bg-[#3B82F6] text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-blue-700 transition flex items-center justify-center gap-2 shadow-sm"
@@ -128,7 +128,8 @@ export default function DaftarSekolah() {
               {schools.length === 0 ? (
                 <p className="text-center py-10 text-gray-400 font-bold">Belum ada sekolah yang dilayani</p>
               ) : (
-                <table className="w-full text-xs text-left">
+                <div className="overflow-x-auto">
+                <table className="w-full min-w-[640px] text-xs text-left">
                   <thead className="bg-gray-100/50 text-gray-500">
                     <tr>
                       <th className="px-6 py-3 font-bold">Nama Sekolah</th>
@@ -173,6 +174,7 @@ export default function DaftarSekolah() {
                     ))}
                   </tbody>
                 </table>
+                </div>
               )}
             </div>
           </>
@@ -181,8 +183,8 @@ export default function DaftarSekolah() {
 
       {/* ── MODAL TAMBAH SEKOLAH ── */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-4 flex flex-col max-h-[80vh]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg flex flex-col max-h-[85vh]">
             {/* Header */}
             <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
               <div>
@@ -232,7 +234,7 @@ export default function DaftarSekolah() {
             </div>
 
             {/* Footer */}
-            <div className="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
+            <div className="px-4 sm:px-6 py-4 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-between gap-3">
               <span className="text-xs text-gray-500 font-semibold">
                 {pickedIds.size} sekolah dipilih
               </span>

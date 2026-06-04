@@ -1,15 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function SidebarMitra() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
+  const [open, setOpen] = useState(false);
 
-  // Referensi untuk menangkap elemen sidebar
   const sidebarRef = useRef(null);
 
-  // Mengembalikan posisi scroll terakhir saat komponen dimuat
   useEffect(() => {
     const savedScrollPos = sessionStorage.getItem("sidebarMitraScroll");
     if (sidebarRef.current && savedScrollPos) {
@@ -17,7 +16,10 @@ export default function SidebarMitra() {
     }
   }, []);
 
-  // Menyimpan posisi scroll setiap kali digulir
+  useEffect(() => {
+    setOpen(false);
+  }, [currentPath]);
+
   const handleScroll = () => {
     if (sidebarRef.current) {
       sessionStorage.setItem(
@@ -25,6 +27,11 @@ export default function SidebarMitra() {
         sidebarRef.current.scrollTop,
       );
     }
+  };
+
+  const go = (path) => {
+    navigate(path);
+    setOpen(false);
   };
 
   const menuClass = (path) => {
@@ -40,110 +47,142 @@ export default function SidebarMitra() {
   };
 
   return (
-    <aside
-      ref={sidebarRef}
-      onScroll={handleScroll}
-      className="w-1/4 bg-[#3B82F6] text-white p-4 flex flex-col sticky top-0 h-screen overflow-y-auto"
-    >
-      <div className="flex items-center gap-2 mb-4">
-        <img src="/logo.png" alt="Logo" className="w-8 h-8" />
-        <span className="text-lg font-bold">NutriSafe MBG</span>
-      </div>
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        aria-label="Buka menu"
+        className="lg:hidden fixed top-3 left-3 z-30 bg-[#3B82F6] text-white p-2 rounded-lg shadow-lg active:scale-95 transition"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
-      <div className="mb-4">
-        <img
-          src="/utama.png"
-          alt="Illustration"
-          className="w-full rounded-xl shadow-md bg-white/20 p-1"
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="lg:hidden fixed inset-0 bg-black/50 z-40"
         />
-      </div>
+      )}
 
-      <h2 className="text-xl font-bold leading-tight mb-6">
-        Dashboard Mitra <br /> & Pengelola
-      </h2>
+      <aside
+        ref={sidebarRef}
+        onScroll={handleScroll}
+        className={`
+          bg-[#3B82F6] text-white p-4 flex flex-col shrink-0 overflow-y-auto
+          fixed lg:sticky top-0 left-0 z-50
+          w-[260px] sm:w-[280px] lg:w-1/4 h-screen
+          transition-transform duration-300 ease-out
+          ${open ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0
+        `}
+      >
+        <button
+          onClick={() => setOpen(false)}
+          aria-label="Tutup menu"
+          className="lg:hidden absolute top-3 right-3 text-white/90 hover:text-white text-2xl leading-none w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10"
+        >
+          ✕
+        </button>
 
-      <nav className="flex-1 space-y-4 pr-2">
-        <div>
-          <p className="flex items-center gap-2 font-bold mb-2 text-sm">
-            <span className="text-lg">📋</span> Menu Mitra
-          </p>
-          <div className="space-y-1">
-            <div
-              onClick={() => navigate("/mitra/status-kemitraan")}
-              className={menuClass("/mitra/status-kemitraan")}
-            >
-              <span>Status Kemitraan & Daftar SPPG</span>
-              <span className="font-bold">&gt;</span>
-            </div>
-            <div
-              onClick={() => navigate("/mitra/riwayat-laporan")}
-              className={menuClass("/mitra/riwayat-laporan")}
-            >
-              <span>Riwayat Laporan</span>
-              <span className="font-bold">&gt;</span>
+        <div className="flex items-center gap-2 mb-4">
+          <img src="/logo.png" alt="Logo" className="w-8 h-8" />
+          <span className="text-lg font-bold">NutriSafe MBG</span>
+        </div>
+
+        <div className="mb-4">
+          <img
+            src="/utama.png"
+            alt="Illustration"
+            className="w-full rounded-xl shadow-md bg-white/20 p-1"
+          />
+        </div>
+
+        <h2 className="text-xl font-bold leading-tight mb-6">
+          Dashboard Mitra <br /> & Pengelola
+        </h2>
+
+        <nav className="flex-1 space-y-4 pr-2">
+          <div>
+            <p className="flex items-center gap-2 font-bold mb-2 text-sm">
+              <span className="text-lg">📋</span> Menu Mitra
+            </p>
+            <div className="space-y-1">
+              <div
+                onClick={() => go("/mitra/status-kemitraan")}
+                className={menuClass("/mitra/status-kemitraan")}
+              >
+                <span>Status Kemitraan & Daftar SPPG</span>
+                <span className="font-bold">&gt;</span>
+              </div>
+              <div
+                onClick={() => go("/mitra/riwayat-laporan")}
+                className={menuClass("/mitra/riwayat-laporan")}
+              >
+                <span>Riwayat Laporan</span>
+                <span className="font-bold">&gt;</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div>
-          <p className="flex items-center gap-2 font-bold mb-2 text-sm">
-            <span className="text-lg">🏢</span> Menu Pengelola
-          </p>
-          <div className="space-y-1">
-            <div
-              onClick={() => navigate("/mitra/monitoring-alergi")}
-              className={menuClass("/mitra/monitoring-alergi")}
-            >
-              <span>Monitoring Alergi Siswa</span>
-              <span className="font-bold">&gt;</span>
-            </div>
-            <div
-              onClick={() => navigate("/mitra/scan-makanan")}
-              className={menuClass("/mitra/scan-makanan")}
-            >
-              <span>Scan & Pelaporan Menu Makanan</span>
-              <span className="font-bold">&gt;</span>
-            </div>
-            <div
-              onClick={() => navigate("/mitra/pelaporan-masalah-makanan")}
-              className={menuClass("/mitra/pelaporan-masalah-makanan")}
-            >
-              <span>Pelaporan Masalah Makanan</span>
-              <span className="font-bold">&gt;</span>
-            </div>
-            <div
-              onClick={() => navigate("/mitra/daftar-sekolah")}
-              className={menuClass("/mitra/daftar-sekolah")}
-            >
-              <span>Daftar Sekolah</span>
-              <span className="font-bold">&gt;</span>
-            </div>
-            
-            {/* TAUTAN BARU: Laporan Makanan Bermasalah */}
-            <div onClick={() => navigate('/mitra/makanan-bermasalah')} className={menuClass('/mitra/makanan-bermasalah')}>
-              <span>Laporan Makanan Bermasalah</span><span className="font-bold">&gt;</span>
-            </div>
+          <div>
+            <p className="flex items-center gap-2 font-bold mb-2 text-sm">
+              <span className="text-lg">🏢</span> Menu Pengelola
+            </p>
+            <div className="space-y-1">
+              <div
+                onClick={() => go("/mitra/monitoring-alergi")}
+                className={menuClass("/mitra/monitoring-alergi")}
+              >
+                <span>Monitoring Alergi Siswa</span>
+                <span className="font-bold">&gt;</span>
+              </div>
+              <div
+                onClick={() => go("/mitra/scan-makanan")}
+                className={menuClass("/mitra/scan-makanan")}
+              >
+                <span>Scan & Pelaporan Menu Makanan</span>
+                <span className="font-bold">&gt;</span>
+              </div>
+              <div
+                onClick={() => go("/mitra/pelaporan-masalah-makanan")}
+                className={menuClass("/mitra/pelaporan-masalah-makanan")}
+              >
+                <span>Pelaporan Masalah Makanan</span>
+                <span className="font-bold">&gt;</span>
+              </div>
+              <div
+                onClick={() => go("/mitra/daftar-sekolah")}
+                className={menuClass("/mitra/daftar-sekolah")}
+              >
+                <span>Daftar Sekolah</span>
+                <span className="font-bold">&gt;</span>
+              </div>
 
+              <div onClick={() => go('/mitra/makanan-bermasalah')} className={menuClass('/mitra/makanan-bermasalah')}>
+                <span>Laporan Makanan Bermasalah</span><span className="font-bold">&gt;</span>
+              </div>
+
+            </div>
+          </div>
+        </nav>
+
+        <div className="pt-4 border-t border-white/20 space-y-3 mt-auto pr-2 pb-4">
+          <div
+            onClick={() => go("/mitra/profile")}
+            className={bottomMenuClass("/mitra/profile")}
+          >
+            <span className="text-base">👤</span>
+            <span>Akun</span>
+          </div>
+          <div
+            onClick={() => go("/mitra/pengaturan")}
+            className={bottomMenuClass("/mitra/pengaturan")}
+          >
+            <span className="text-base">⚙️</span>
+            <span>Pengaturan</span>
           </div>
         </div>
-      </nav>
-
-      <div className="pt-4 border-t border-white/20 space-y-3 mt-auto pr-2 pb-4">
-        <div
-          onClick={() => navigate("/mitra/profile")}
-          className={bottomMenuClass("/mitra/profile")}
-        >
-          <span className="text-base">👤</span>
-          <span>Akun</span>
-        </div>
-        <div
-          onClick={() => navigate("/mitra/pengaturan")}
-          className={bottomMenuClass("/mitra/pengaturan")}
-        >
-          <span className="text-base">⚙️</span>
-          <span>Pengaturan</span>
-        </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 }

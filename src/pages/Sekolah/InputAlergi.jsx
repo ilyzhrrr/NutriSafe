@@ -67,21 +67,21 @@ export default function InputAlergi() {
   return (
     <div className="flex min-h-screen bg-[#F0FFF4] font-sans">
       <SidebarSekolah />
-      <main className="flex-1 p-8 overflow-y-auto">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
         <div className="max-w-5xl mx-auto">
-          <header className="flex justify-between items-start mb-8">
+          <header className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-6 sm:mb-8">
             <div>
-              <h2 className="text-3xl font-black text-[#166534]">Dashboard Sekolah</h2>
-              <p className="text-lg font-bold text-[#166534] mt-1">Input Data Alergi Siswa</p>
+              <h2 className="text-2xl sm:text-3xl font-black text-[#166534]">Dashboard Sekolah</h2>
+              <p className="text-base sm:text-lg font-bold text-[#166534] mt-1">Input Data Alergi Siswa</p>
             </div>
-            <div className="text-right pt-2">
-              <p className="text-lg font-bold text-gray-800">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
+            <div className="sm:text-right pt-2">
+              <p className="text-sm sm:text-lg font-bold text-gray-800">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
             </div>
           </header>
 
-          <div className="flex gap-8">
-            <div className="flex-1 bg-[#C6F6D5] p-8 rounded-[32px] shadow-sm">
-              <h3 className="text-2xl font-black mb-6">Formulir Alergi Siswa</h3>
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
+            <div className="flex-1 bg-[#C6F6D5] p-5 sm:p-8 rounded-3xl sm:rounded-[32px] shadow-sm">
+              <h3 className="text-xl sm:text-2xl font-black mb-6">Formulir Alergi Siswa</h3>
               {msg && (
                 <div className={`mb-4 p-3 rounded-lg text-sm font-bold ${msg.startsWith('Gagal') ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
                   {msg}
@@ -163,7 +163,7 @@ export default function InputAlergi() {
                   <textarea placeholder="Contoh: gatal-gatal saat mengkonsumsi kacang" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })}
                     className="w-full p-3 rounded-xl border-none outline-none h-24 text-sm font-semibold resize-none"></textarea>
                 </div>
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                   <div>
                     <label className="block text-sm font-bold mb-1.5">Tingkat Keparahan</label>
                     <select value={form.severity} onChange={(e) => setForm({ ...form, severity: e.target.value })} required
@@ -191,7 +191,7 @@ export default function InputAlergi() {
               </form>
             </div>
 
-            <div className="w-[350px] bg-white p-8 rounded-[32px] border-2 border-[#22C55E] shadow-sm flex flex-col">
+            <div className="w-full lg:w-[350px] bg-white p-5 sm:p-8 rounded-3xl sm:rounded-[32px] border-2 border-[#22C55E] shadow-sm flex flex-col">
               <h3 className="text-xl font-black mb-6 text-gray-800">Daftar Alergi Siswa</h3>
               {loading ? (
                 <p className="text-center text-gray-400 font-bold text-sm">Memuat data...</p>

@@ -71,33 +71,33 @@ export default function PenerimaanMakanan() {
     <div className="flex min-h-screen bg-[#cbf4c9] font-sans">
       <SidebarSekolah />
 
-      <main className="flex-1 p-8 relative">
-        <div className="flex justify-between items-start mb-2">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 relative min-w-0">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-2">
           <div>
-            <h1 className="text-3xl font-black text-[#1E3A8A]">Dashboard Sekolah</h1>
-            <h2 className="text-xl font-bold text-[#2563EB] mt-1">Penerimaan Makanan</h2>
-            <h3 className="text-xl font-black text-black mt-2">{schoolName || 'Sekolah'}</h3>
+            <h1 className="text-2xl sm:text-3xl font-black text-[#1E3A8A]">Dashboard Sekolah</h1>
+            <h2 className="text-lg sm:text-xl font-bold text-[#2563EB] mt-1">Penerimaan Makanan</h2>
+            <h3 className="text-lg sm:text-xl font-black text-black mt-2">{schoolName || 'Sekolah'}</h3>
           </div>
 
-          <div className="bg-[#D1D5DB] text-gray-800 font-bold px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm">
-            <span>📅</span> {formatTanggalIndo(now)}
+          <div className="bg-[#D1D5DB] text-gray-800 font-bold px-4 py-2 rounded-xl flex items-center gap-2 shadow-sm text-xs sm:text-sm self-start">
+            <span>📅</span> <span className="truncate">{formatTanggalIndo(now)}</span>
           </div>
         </div>
 
-        <div className="flex justify-end pr-4 mb-4">
+        <div className="flex justify-end sm:pr-4 mb-4">
           <div className="border-4 border-black font-black text-xl px-2 py-0.5 rounded shadow-sm bg-[#cbf4c9]">
             {now.getHours().toString().padStart(2, '0')}:{now.getMinutes().toString().padStart(2, '0')}
           </div>
         </div>
 
         <div className="max-w-4xl bg-white rounded-xl shadow-sm overflow-hidden">
-          <div className="px-8 pt-8 pb-4 border-b-2 border-gray-100">
-            <h2 className="text-2xl font-black text-black">Konfirmasi Kedatangan Pangan</h2>
+          <div className="px-5 sm:px-8 pt-6 sm:pt-8 pb-4 border-b-2 border-gray-100">
+            <h2 className="text-xl sm:text-2xl font-black text-black">Konfirmasi Kedatangan Pangan</h2>
           </div>
 
           {message && (
             <div
-              className={`mx-8 mt-4 rounded-xl border px-4 py-3 text-sm font-bold ${
+              className={`mx-5 sm:mx-8 mt-4 rounded-xl border px-4 py-3 text-sm font-bold ${
                 isSuccess
                   ? 'border-green-200 bg-green-50 text-green-700'
                   : 'border-red-200 bg-red-50 text-red-700'
@@ -107,7 +107,7 @@ export default function PenerimaanMakanan() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="p-8 space-y-6">
+          <form onSubmit={handleSubmit} className="p-5 sm:p-8 space-y-6">
             <div>
               <label className="block text-lg font-bold text-black mb-2">SPPG Pemasok</label>
               <input
@@ -135,12 +135,12 @@ export default function PenerimaanMakanan() {
               />
             </div>
 
-            <div className="flex items-center pt-4">
-              <span className="text-base font-bold text-black w-20 leading-tight">
-                Upload<br />Bukti
+            <div className="flex flex-col sm:flex-row sm:items-center pt-4 gap-3">
+              <span className="text-base font-bold text-black sm:w-20 leading-tight">
+                Upload Bukti
               </span>
-              <div className="flex-1 border-b border-gray-400 mx-6">
-                {foto && <p className="text-xs font-bold text-gray-700 pb-1">{foto.name}</p>}
+              <div className="flex-1 border-b border-gray-400 sm:mx-6 min-h-[1.5rem]">
+                {foto && <p className="text-xs font-bold text-gray-700 pb-1 break-all">{foto.name}</p>}
               </div>
               <input
                 ref={fileRef}
@@ -152,7 +152,7 @@ export default function PenerimaanMakanan() {
               />
               <label
                 htmlFor="upload-bukti-penerimaan"
-                className="bg-[#2577F1] text-white px-8 py-3 rounded-xl font-bold text-lg hover:bg-blue-700 transition shadow-sm cursor-pointer"
+                className="bg-[#2577F1] text-white px-6 sm:px-8 py-3 rounded-xl font-bold text-base sm:text-lg hover:bg-blue-700 transition shadow-sm cursor-pointer text-center"
               >
                 Upload Foto
               </label>

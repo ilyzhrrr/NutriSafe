@@ -51,9 +51,9 @@ export default function Profile() {
     <div className="flex min-h-screen bg-[#E0F2FE] font-sans">
       <SidebarMitra />
 
-      <main className="w-3/4 p-10 flex flex-col items-center">
-        <div className="w-full max-w-3xl mb-8">
-          <h1 className="text-3xl font-black text-[#1E3A8A]">Profil Akun</h1>
+      <main className="flex-1 lg:w-3/4 p-4 sm:p-6 lg:p-10 pt-16 lg:pt-10 flex flex-col items-center min-w-0">
+        <div className="w-full max-w-3xl mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-black text-[#1E3A8A]">Profil Akun</h1>
           <h2 className="text-sm font-bold text-[#3B82F6] mt-1">Kelola informasi pribadi dan data mitra Anda</h2>
         </div>
 
@@ -61,30 +61,30 @@ export default function Profile() {
           <div className="text-center py-20 text-gray-400 font-bold">Memuat data...</div>
         ) : (
           <div className="w-full max-w-3xl bg-white rounded-3xl shadow-sm border border-blue-50 overflow-hidden">
-            <div className="bg-[#CFFAFE] p-8 flex flex-col items-center border-b border-cyan-100 relative">
-              <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-5xl shadow-md border-4 border-blue-500 mb-4 z-10">
+            <div className="bg-[#CFFAFE] p-6 sm:p-8 flex flex-col items-center border-b border-cyan-100 relative">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full flex items-center justify-center text-4xl sm:text-5xl shadow-md border-4 border-blue-500 mb-4 z-10">
                 👨‍🍳
               </div>
-              <h3 className="text-xl font-black text-[#1E3A8A]">{profile?.name || '-'}</h3>
+              <h3 className="text-lg sm:text-xl font-black text-[#1E3A8A] text-center break-words">{profile?.name || '-'}</h3>
               <p className="text-xs font-bold text-blue-600 bg-blue-100 px-3 py-1 rounded-full mt-2">
                 Mitra SPPG {profile?.sppg_status === 'active' ? 'Aktif' : profile?.sppg_status || ''}
               </p>
               <button
                 onClick={() => setIsEditMode(!isEditMode)}
-                className="absolute top-6 right-6 bg-white text-blue-600 px-4 py-1.5 rounded-lg text-xs font-bold shadow-sm hover:bg-blue-50 transition border border-blue-100"
+                className="mt-4 sm:mt-0 sm:absolute sm:top-6 sm:right-6 bg-white text-blue-600 px-4 py-1.5 rounded-lg text-xs font-bold shadow-sm hover:bg-blue-50 transition border border-blue-100"
               >
                 {isEditMode ? '❌ Batal Edit' : '✏️ Edit Profil'}
               </button>
             </div>
 
-            <div className="p-8 space-y-6">
+            <div className="p-5 sm:p-8 space-y-6">
               {msg && (
                 <div className={`p-3 rounded-lg text-sm font-bold ${msg.startsWith('Gagal') ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
                   {msg}
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   { label: 'Nama Lengkap', key: 'name', type: 'text' },
                   { label: 'Nomor Telepon', key: 'phone', type: 'text' },
@@ -116,9 +116,9 @@ export default function Profile() {
               </div>
 
               {isEditMode && (
-                <div className="pt-4 flex justify-end gap-3">
-                  <button onClick={handleCancel} className="px-8 py-2.5 rounded-xl text-sm font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 transition">Batal</button>
-                  <button onClick={handleSave} disabled={saving} className="px-8 py-2.5 rounded-xl text-sm font-bold shadow-md bg-[#2563EB] text-white hover:bg-blue-700 transition disabled:opacity-60">
+                <div className="pt-4 flex flex-col sm:flex-row sm:justify-end gap-3">
+                  <button onClick={handleCancel} className="px-6 sm:px-8 py-2.5 rounded-xl text-sm font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 transition order-2 sm:order-1">Batal</button>
+                  <button onClick={handleSave} disabled={saving} className="px-6 sm:px-8 py-2.5 rounded-xl text-sm font-bold shadow-md bg-[#2563EB] text-white hover:bg-blue-700 transition disabled:opacity-60 order-1 sm:order-2">
                     {saving ? 'Menyimpan...' : 'Simpan Perubahan'}
                   </button>
                 </div>
