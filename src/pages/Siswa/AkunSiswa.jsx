@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import SidebarSiswa from './SidebarSiswa'
-import { api, clearAuth } from '../../api'
+import { api } from '../../api'
 
 export default function AkunSiswa() {
-  const navigate = useNavigate()
   const [isEditing, setIsEditing] = useState(false)
   const [profile, setProfile] = useState(null)
   const [form, setForm] = useState({ name: '', email: '', phone: '' })
@@ -35,11 +33,6 @@ export default function AkunSiswa() {
     } finally {
       setSaving(false)
     }
-  }
-
-  const handleLogout = () => {
-    clearAuth()
-    navigate('/')
   }
 
   return (
@@ -115,16 +108,10 @@ export default function AkunSiswa() {
                       </button>
                     </>
                   ) : (
-                    <>
-                      <button onClick={() => setIsEditing(true)}
-                        className="bg-[#F97316] text-white px-8 py-2.5 rounded-xl font-bold hover:bg-orange-600 transition cursor-pointer">
-                        Edit Profil
-                      </button>
-                      <button onClick={handleLogout}
-                        className="bg-red-600 text-white px-8 py-2.5 rounded-xl font-bold hover:bg-red-700 transition flex items-center gap-2 cursor-pointer">
-                        <span>🚪</span> Keluar Akun
-                      </button>
-                    </>
+                    <button onClick={() => setIsEditing(true)}
+                      className="bg-[#F97316] text-white px-8 py-2.5 rounded-xl font-bold hover:bg-orange-600 transition cursor-pointer">
+                      Edit Profil
+                    </button>
                   )}
                 </div>
               </div>

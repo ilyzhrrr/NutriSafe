@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import SidebarSekolah from './SidebarSekolah'
-import { api, clearAuth } from '../../api'
+import { api } from '../../api'
 
 export default function AkunSekolah() {
-  const navigate = useNavigate()
   const [isEditing, setIsEditing] = useState(false)
   const [profile, setProfile] = useState(null)
   const [form, setForm] = useState({ name: '', email: '', phone: '', lokasi: '' })
@@ -35,11 +33,6 @@ export default function AkunSekolah() {
     } finally {
       setSaving(false)
     }
-  }
-
-  const handleLogout = () => {
-    clearAuth()
-    navigate('/')
   }
 
   return (
@@ -111,30 +104,20 @@ export default function AkunSekolah() {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-gray-100 flex flex-col gap-4">
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                    {isEditing ? (
-                      <>
-                        <button onClick={handleSave} disabled={saving} className="bg-green-600 text-white px-8 py-2.5 rounded-xl font-bold hover:bg-green-700 transition disabled:opacity-60">
-                          {saving ? 'Menyimpan...' : 'Simpan'}
-                        </button>
-                        <button onClick={() => setIsEditing(false)} className="bg-gray-200 text-gray-700 px-8 py-2.5 rounded-xl font-bold hover:bg-gray-300 transition">
-                          Batal
-                        </button>
-                      </>
-                    ) : (
-                      <button onClick={() => setIsEditing(true)} className="bg-[#22C55E] text-white px-8 py-2.5 rounded-xl font-bold hover:bg-green-600 transition">
-                        Edit Profil
+                <div className="pt-6 border-t border-gray-100 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  {isEditing ? (
+                    <>
+                      <button onClick={handleSave} disabled={saving} className="bg-green-600 text-white px-8 py-2.5 rounded-xl font-bold hover:bg-green-700 transition disabled:opacity-60">
+                        {saving ? 'Menyimpan...' : 'Simpan'}
                       </button>
-                    )}
-                  </div>
-
-                  {!isEditing && (
-                    <div className="pt-2">
-                      <button onClick={handleLogout} className="text-red-600 font-bold text-sm hover:text-red-700 transition flex items-center gap-2 cursor-pointer w-fit">
-                        <span>🚪</span> Keluar Akun
+                      <button onClick={() => setIsEditing(false)} className="bg-gray-200 text-gray-700 px-8 py-2.5 rounded-xl font-bold hover:bg-gray-300 transition">
+                        Batal
                       </button>
-                    </div>
+                    </>
+                  ) : (
+                    <button onClick={() => setIsEditing(true)} className="bg-[#22C55E] text-white px-8 py-2.5 rounded-xl font-bold hover:bg-green-600 transition">
+                      Edit Profil
+                    </button>
                   )}
                 </div>
               </div>

@@ -50,18 +50,18 @@ export default function PelaporanSekolah() {
     <div className="flex min-h-screen bg-[#F0FFF4] font-sans">
       <SidebarSekolah />
       <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
-        <div className="max-w-5xl">
-          <header className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-6">
-            <div className="pt-2 sm:pt-4">
+        <div className="max-w-5xl mx-auto">
+          <header className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-6 sm:mb-8">
+            <div>
               <h2 className="text-2xl sm:text-3xl font-black text-[#166534]">Dashboard Sekolah</h2>
               <p className="text-base sm:text-lg font-bold text-[#166534] mt-1">Pelaporan Makanan</p>
             </div>
-            <div className="sm:pt-4 sm:text-right">
+            <div className="sm:text-right pt-2">
               <p className="text-sm sm:text-lg font-bold text-gray-800">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
             </div>
           </header>
 
-          <div className="space-y-6 mt-4">
+          <div className="space-y-6">
             <div className="bg-white p-4 rounded-xl flex items-center gap-3 shadow-sm border border-gray-100 w-fit">
               <span className="text-xl">🍱</span>
               <p className="font-black text-lg text-blue-900">{sppg ? sppg.name : 'Belum ada SPPG'}</p>

@@ -28,13 +28,13 @@ export default function MakananAlergi() {
       <SidebarSekolah />
       <main className="flex-1 p-4 sm:p-6 lg:p-8 pt-16 lg:pt-8 overflow-y-auto min-w-0">
         <div className="max-w-5xl mx-auto">
-          <header className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6 sm:mb-8">
-            <div className="pt-2">
+          <header className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-6 sm:mb-8">
+            <div>
               <h2 className="text-2xl sm:text-3xl font-black text-[#166534]">Dashboard Sekolah</h2>
               <p className="text-base sm:text-lg font-bold text-[#166534] mt-1">Makanan Khusus Siswa Alergi</p>
             </div>
-            <div className="sm:text-right flex flex-col sm:items-end pt-2 gap-2 sm:gap-0">
-              <p className="text-sm sm:text-lg font-bold text-gray-800 sm:mb-4">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
+            <div className="sm:text-right pt-2 flex flex-col sm:items-end gap-2 sm:gap-3">
+              <p className="text-sm sm:text-lg font-bold text-gray-800">{new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
               <Link to="/sekolah/data-alergi" className="bg-[#22C55E] text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-green-600 transition cursor-pointer inline-block shadow-md self-start sm:self-auto">
                 Lihat Data Alergi Siswa
               </Link>
@@ -49,7 +49,7 @@ export default function MakananAlergi() {
           {loading ? (
             <div className="text-center py-10 text-gray-400 font-bold">Memuat data...</div>
           ) : groups.length === 0 ? (
-            <div className="bg-[#C6F6D5] p-8 rounded-[32px] text-center">
+            <div className="bg-[#C6F6D5] p-5 sm:p-8 rounded-3xl sm:rounded-[32px] text-center shadow-sm">
               <p className="font-bold text-gray-600">Belum ada menu khusus alergi untuk tanggal ini.</p>
             </div>
           ) : (

@@ -1,6 +1,51 @@
 import React, { useEffect, useState } from 'react'
+import * as XLSX from 'xlsx'
 import SidebarSekolah from './SidebarSekolah'
 import { api } from '../../api'
+
+const FIELD_ALIASES = {
+  name: ['nama lengkap siswa', 'nama lengkap', 'nama siswa', 'nama', 'name'],
+  nisn: ['nisn'],
+  class: ['kelas', 'class'],
+  gender: ['jenis kelamin', 'jk', 'gender'],
+  address: ['alamat domisili', 'alamat lengkap', 'alamat', 'address'],
+}
+
+const cleanHeader = (k) =>
+  String(k)
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+const normalizeRow = (raw) => {
+  const out = { name: '', nisn: '', class: '', gender: '', address: '' }
+  const cleanedKeys = {}
+  Object.keys(raw).forEach((k) => { cleanedKeys[cleanHeader(k)] = raw[k] })
+  const keyList = Object.keys(cleanedKeys)
+  for (const [field, aliases] of Object.entries(FIELD_ALIASES)) {
+    for (const a of aliases) {
+      const exact = cleanedKeys[a]
+      if (exact !== undefined && exact !== null && String(exact).trim() !== '') {
+        out[field] = String(exact).trim()
+        break
+      }
+      const partial = keyList.find((k) => k.includes(a))
+      if (partial && cleanedKeys[partial] !== undefined && String(cleanedKeys[partial]).trim() !== '') {
+        out[field] = String(cleanedKeys[partial]).trim()
+        break
+      }
+    }
+  }
+  if (out.nisn) out.nisn = out.nisn.replace(/\D/g, '')
+  if (out.gender) {
+    const g = out.gender.toLowerCase().trim()
+    if (g === 'l' || g === 'm' || g === 'male' || g.startsWith('lak')) out.gender = 'Laki-laki'
+    else if (g === 'p' || g === 'f' || g === 'female' || g.startsWith('per')) out.gender = 'Perempuan'
+  }
+  return out
+}
 
 export default function DataSiswa() {
   const [students, setStudents] = useState([])
@@ -17,6 +62,13 @@ export default function DataSiswa() {
   const [savingKelas, setSavingKelas] = useState(false)
   const [kelasMsg, setKelasMsg] = useState('')
   const [schoolGrade, setSchoolGrade] = useState('')
+
+  const [showImport, setShowImport] = useState(false)
+  const [importFile, setImportFile] = useState(null)
+  const [importRows, setImportRows] = useState([])
+  const [importing, setImporting] = useState(false)
+  const [importMsg, setImportMsg] = useState('')
+  const [importSummary, setImportSummary] = useState(null)
 
   const gradeOptions = {
     'SD/MI':            ['1', '2', '3', '4', '5', '6'],
@@ -83,6 +135,62 @@ export default function DataSiswa() {
     }
   }
 
+  const resetImport = () => {
+    setShowImport(false)
+    setImportFile(null)
+    setImportRows([])
+    setImportMsg('')
+    setImporting(false)
+    setImportSummary(null)
+  }
+
+  const handleImportFile = async (file) => {
+    if (!file) return
+    setImportFile(file)
+    setImportMsg('')
+    try {
+      const buf = await file.arrayBuffer()
+      const wb = XLSX.read(buf, { type: 'array' })
+      const sheet = wb.Sheets[wb.SheetNames[0]]
+      const json = XLSX.utils.sheet_to_json(sheet, { defval: '' })
+      const rows = json.map(normalizeRow).filter((r) => r.name && r.nisn)
+      if (rows.length === 0) {
+        setImportRows([])
+        setImportMsg('Tidak ditemukan baris valid. Pastikan kolom Nama dan NISN terisi sesuai template.')
+        return
+      }
+      setImportRows(rows)
+    } catch {
+      setImportRows([])
+      setImportMsg('Gagal membaca berkas. Pastikan format .xlsx atau .xls.')
+    }
+  }
+
+  const handleImportSubmit = async () => {
+    if (importRows.length === 0) return
+    setImporting(true)
+    setImportMsg('')
+    setImportSummary(null)
+    try {
+      const res = await api.post('/school/students/bulk', { students: importRows })
+      const s = res.summary || { total: 0, success: 0, skipped: 0, error: 0, classes_created: 0 }
+      setImportSummary(s)
+      load()
+      loadKelas()
+      const kelasNote = s.classes_created > 0 ? ` ${s.classes_created} kelas baru otomatis ditambahkan.` : ''
+      if (s.error === 0 && s.skipped === 0) {
+        setImportMsg(`Berhasil mengimport ${s.success} data siswa.${kelasNote}`)
+        setTimeout(() => resetImport(), 2500)
+      } else {
+        setImportMsg(`Proses selesai. Berhasil: ${s.success}, dilewati: ${s.skipped}, gagal: ${s.error}.${kelasNote}`)
+      }
+    } catch (err) {
+      setImportMsg('Gagal: ' + (err.message || 'Tidak dapat menghubungi server.'))
+    } finally {
+      setImporting(false)
+    }
+  }
+
   const handleDelete = async (id) => {
     if (!confirm('Hapus data siswa ini?')) return
     try {
@@ -124,8 +232,8 @@ export default function DataSiswa() {
               {/* Bagian Judul dan Tombol Import Excel */}
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
                 <h3 className="text-xl sm:text-2xl font-black text-gray-800">Formulir Data Siswa</h3>
-                <button type="button" className="bg-green-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-green-800 transition cursor-pointer shadow-sm self-start">
-                  Import Data dari Excel
+                <button type="button" onClick={() => setShowImport(true)} className="bg-green-700 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-green-800 transition cursor-pointer shadow-sm self-start">
+                  Import Data
                 </button>
               </div>
 
@@ -194,7 +302,7 @@ export default function DataSiswa() {
 
             <div className="bg-white p-5 sm:p-8 rounded-3xl sm:rounded-[32px] border-2 border-[#22C55E] shadow-sm w-full mb-10">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-3 mb-6 border-b-2 border-gray-100 pb-4">
-                <h3 className="text-xl sm:text-2xl font-black text-gray-800">Daftar Siswa Terdaftar</h3>
+                <h3 className="text-xl sm:text-2xl font-black text-gray-800">Daftar Siswa</h3>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                   <select value={filterKelas} onChange={(e) => setFilterKelas(e.target.value)}
                     className="bg-white border-2 border-green-200 text-green-800 text-sm font-bold px-3 py-1.5 rounded-lg outline-none cursor-pointer">
@@ -243,6 +351,118 @@ export default function DataSiswa() {
           </div>
         </div>
       </main>
+
+      {showImport && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={() => !importing && resetImport()}>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 w-full max-w-2xl shadow-xl max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <h4 className="text-xl sm:text-2xl font-black text-[#166534] mb-1">Import Data Siswa dari Excel</h4>
+            <p className="text-xs text-gray-500 font-bold mb-6">Ikuti dua langkah berikut untuk mengimport data siswa secara massal.</p>
+
+            <div className="bg-green-50 border border-green-100 rounded-xl p-4 sm:p-5 mb-5">
+              <p className="text-sm font-black text-[#166534] mb-2">Langkah 1 — Unduh Template Excel</p>
+              <p className="text-xs sm:text-sm font-semibold text-gray-600 mb-4 leading-relaxed">
+                Silakan unduh template Excel resmi yang telah disediakan. Template ini memuat format kolom standar yang wajib digunakan: Nama Lengkap Siswa, NISN, Kelas, Jenis Kelamin, dan Alamat Domisili.
+              </p>
+              <a href="/template-data-siswa.xlsx" download
+                className="inline-block bg-[#22C55E] text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-green-600 transition shadow-sm">
+                Unduh Template Excel
+              </a>
+            </div>
+
+            <div className="bg-gray-50 border border-gray-100 rounded-xl p-4 sm:p-5 mb-4">
+              <p className="text-sm font-black text-gray-800 mb-2">Langkah 2 — Unggah Berkas Data Siswa</p>
+              <p className="text-xs sm:text-sm font-semibold text-gray-600 mb-1 leading-relaxed">
+                Setelah template diisi, silakan unggah berkas Excel berisi data siswa. Mohon pastikan format kolom tidak diubah agar proses import berhasil.
+              </p>
+              <p className="text-xs font-bold text-gray-400 mb-4">Format yang didukung: .xlsx atau .xls &middot; Ukuran maksimal: 5 MB</p>
+
+              <input id="import-excel-file" type="file" accept=".xlsx,.xls"
+                onChange={(e) => handleImportFile(e.target.files?.[0] || null)} className="hidden" />
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                <label htmlFor="import-excel-file"
+                  className="bg-white border-2 border-[#22C55E] text-[#166534] px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-green-50 transition cursor-pointer self-start">
+                  Pilih Berkas Excel
+                </label>
+                <p className="text-xs sm:text-sm font-bold text-gray-500 truncate flex-1">
+                  {importFile ? importFile.name : 'Belum ada berkas dipilih'}
+                </p>
+              </div>
+            </div>
+
+            {importMsg && (
+              <div className={`mb-4 p-3 rounded-lg text-xs sm:text-sm font-bold ${importMsg.startsWith('Gagal') || importMsg.startsWith('Tidak') ? 'bg-red-50 text-red-700' : importMsg.startsWith('Selesai') ? 'bg-yellow-50 text-yellow-700' : 'bg-green-50 text-green-700'}`}>
+                {importMsg}
+              </div>
+            )}
+
+            {importRows.length > 0 && (
+              <div className="mb-4">
+                <p className="text-xs sm:text-sm font-black text-gray-800 mb-2">Preview ({Math.min(5, importRows.length)} dari {importRows.length} baris)</p>
+                <div className="overflow-x-auto rounded-xl border border-gray-200">
+                  <table className="w-full min-w-[560px] text-left border-collapse text-xs">
+                    <thead>
+                      <tr className="bg-[#C6F6D5] text-[#166534]">
+                        <th className="p-2.5 font-black">Nama</th>
+                        <th className="p-2.5 font-black">NISN</th>
+                        <th className="p-2.5 font-black">Kelas</th>
+                        <th className="p-2.5 font-black">Jenis Kelamin</th>
+                        <th className="p-2.5 font-black">Alamat</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {importRows.slice(0, 5).map((r, i) => (
+                        <tr key={i} className="border-b border-gray-100 last:border-0">
+                          <td className="p-2.5 font-bold text-gray-800">{r.name || '-'}</td>
+                          <td className="p-2.5 font-semibold text-gray-700">{r.nisn || '-'}</td>
+                          <td className="p-2.5 font-semibold text-gray-700">{r.class || '-'}</td>
+                          <td className="p-2.5 font-semibold text-gray-700">{r.gender ? r.gender[0] : '-'}</td>
+                          <td className="p-2.5 font-semibold text-gray-700 truncate max-w-[180px]">{r.address || '-'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-xs font-bold text-gray-500 mt-2">Total: {importRows.length} baris siap diimport.</p>
+              </div>
+            )}
+
+            {importing && (
+              <div className="mb-4 flex items-center justify-center gap-2 text-sm font-bold text-[#166534]">
+                <span className="w-4 h-4 border-2 border-[#166534] border-t-transparent rounded-full animate-spin"></span>
+                Mengimport data...
+              </div>
+            )}
+
+            {importSummary && !importing && (
+              <div className="mb-4 grid grid-cols-3 gap-2 text-xs">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-2 text-center">
+                  <p className="font-black text-green-700 text-base">{importSummary.success}</p>
+                  <p className="font-bold text-green-600">Berhasil</p>
+                </div>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-2 text-center">
+                  <p className="font-black text-yellow-700 text-base">{importSummary.skipped}</p>
+                  <p className="font-bold text-yellow-600">Dilewati</p>
+                </div>
+                <div className="bg-red-50 border border-red-200 rounded-lg p-2 text-center">
+                  <p className="font-black text-red-700 text-base">{importSummary.error}</p>
+                  <p className="font-bold text-red-600">Gagal</p>
+                </div>
+              </div>
+            )}
+
+            <div className="flex flex-col sm:flex-row justify-end gap-3 pt-2 border-t border-gray-100">
+              <button type="button" onClick={resetImport} disabled={importing}
+                className="bg-gray-100 text-gray-600 px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-gray-200 transition cursor-pointer disabled:opacity-60">
+                Batal
+              </button>
+              <button type="button" onClick={handleImportSubmit} disabled={importing || importRows.length === 0}
+                className="bg-[#22C55E] text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-green-600 transition shadow-md cursor-pointer disabled:opacity-60">
+                {importing ? 'Mengimport...' : `Mulai Import ${importRows.length || ''} Data`.trim()}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {showTambahKelas && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={() => { setShowTambahKelas(false); setKelasMsg('') }}>
